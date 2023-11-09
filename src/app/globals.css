@@ -1,0 +1,277 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+div {
+  margin-bottom: 10px;
+}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  margin-top: 70px;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+  color: black;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  color: white;
+  background-color: #002B49;
+}
+
+/* Style the tab content */
+.tabcontent {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  width: 100%;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  padding: 10px;
+}
+
+input[type="checkbox"] {
+  height: 20px;
+  width: 20px;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.field-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid 1px lightgrey;
+  padding: 10px 10px 20px 10px;
+  gap: 15px;
+}
+
+.object-details {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+}
+
+button {
+  background-color: #002B49;
+  /* Bootstrap 'success' color */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: black;
+  /* A darker shade for hover effect */
+}
+
+#jsonDisplay {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* Slight shadow for the table */
+}
+
+th,
+td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  /* Light border for table rows */
+}
+
+th {
+  background-color: #002B49;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+  /* Zebra striping for rows */
+}
+
+.delete-button {
+  padding: 7px 15px;
+}
+
+.add-button {
+  font-size: 20px;
+  padding: 15px 25px;
+}
+
+.edit-tools-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+/* The modal's background */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 2; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+  display: flex;
+  align-items: center; /* Align the box to the center vertically */
+  justify-content: center; /* Align the box to the center horizontally */
+}
+
+/* The modal content box */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%; /* You can adjust this as needed */
+  max-width: 600px; /* Maximum width */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+.tab-action-button {
+  position: absolute;
+  top: 25px;
+  right: 20px;
+}
+
+.actions-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.menu-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  background-color: white;
+  color: #002B49;
+  border: solid 1px #002B49;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0px 15px;
+  margin: 0;
+}
+
+.menu-button:hover {
+  background-color: lightgray;
+}
+
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: white;
+  color: #002B49;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+  display: none;
+  pointer-events: none;
+}
+
+/* Add animation */
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+}
+
+/* The buttons */
+.modal-footer button {
+  padding: 10px 20px;
+  margin: 10px 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-footer button:hover {
+  opacity: 0.8;
+}
+
+/* The close button */
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+

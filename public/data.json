@@ -1,0 +1,14 @@
+[
+  {
+    "sentence": "sfbsdfb",
+    "parentKey": "sdfbsd",
+    "isQuestion": true,
+    "isImperative": false
+  },
+  {
+    "sentence": "bsdfbsd",
+    "parentKey": "sdbfdsfb",
+    "isQuestion": false,
+    "isImperative": true
+  }
+]
