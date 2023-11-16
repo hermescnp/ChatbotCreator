@@ -24,6 +24,7 @@ export const JsonDisplay: React.FC<JsonDisplayProps> = ({ jsonArray, fieldConfig
 
   return (
     <div id="jsonDisplay">
+      <p>Number of items: {jsonArray.length}</p>
       <table border={1}>
         <thead>
           <tr>

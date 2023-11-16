@@ -1,14 +1,552 @@
-[
-  {
-    "sentence": "sfbsdfb",
-    "parentKey": "sdfbsd",
-    "isQuestion": true,
-    "isImperative": false
-  },
-  {
-    "sentence": "bsdfbsd",
-    "parentKey": "sdbfdsfb",
-    "isQuestion": false,
-    "isImperative": true
-  }
-]
+{
+  "utterances": [
+    {
+      "utterance": "¿Cuál es mi balance?",
+      "dialogKey": "Consulta de balance",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Quiero ver mi balance",
+      "dialogKey": "Consulta de balance",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "cuanto tengo en mi cuenta",
+      "dialogKey": "Consulta de balance",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "cuanto dinero tengo",
+      "dialogKey": "Consulta de balance",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "cuanto tengo disponible",
+      "dialogKey": "Consulta de balance",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "dime mi saldo",
+      "dialogKey": "Consulta de balance",
+      "isQuestion": false,
+      "isImperative": true,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "dame mi balance",
+      "dialogKey": "Consulta de balance",
+      "isQuestion": false,
+      "isImperative": true,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Quiero consultar mi cuenta",
+      "dialogKey": "Consultar detalles de cuenta",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "quiero ver detalles de mi cuenta",
+      "dialogKey": "Consultar detalles de cuenta",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "dame los detalles de mi cuenta",
+      "dialogKey": "Consultar detalles de cuenta",
+      "isQuestion": false,
+      "isImperative": true,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "quiero saber sobre mi cuenta",
+      "dialogKey": "Consultar detalles de cuenta",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "déjame ver mi cuenta",
+      "dialogKey": "Consultar detalles de cuenta",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Quiero hacer un avance de efectivo",
+      "dialogKey": "Avance de efectivo",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "quiero sacar dinero de mi tarjeta de crédito",
+      "dialogKey": "Avance de efectivo",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cómo saco dinero de mi tarjeta?",
+      "dialogKey": "Avance de efectivo",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cuales oficinas tinen turnos o citas?",
+      "dialogKey": "Información sobre Turnos y Citas",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿cuales sucursales tienen turnos?",
+      "dialogKey": "Información sobre Turnos y Citas",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿En cuales sucursales puedo hacer citas?",
+      "dialogKey": "Información sobre Turnos y Citas",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cual sucursal me atiende más rápido?",
+      "dialogKey": "Información sobre Turnos y Citas",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Quiero generar un turno",
+      "dialogKey": "Generar un Turno",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "quiero tomar un turno",
+      "dialogKey": "Generar un Turno",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "quiero reservar un turno",
+      "dialogKey": "Generar un Turno",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿cómo hago que me atiendan de primero en la sucursal?",
+      "dialogKey": "Información sobre Turnos y Citas",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "quiero crear un turno",
+      "dialogKey": "Generar un Turno",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "quiero evitar hacer fila en el banco",
+      "dialogKey": "Información sobre Turnos y Citas",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Quiero programar una cita",
+      "dialogKey": "Generar una Cita",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "quiero hacer una cita",
+      "dialogKey": "Generar una Cita",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "quiero pautar una reunión con un oficial",
+      "dialogKey": "Generar una Cita",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "crea una cita",
+      "dialogKey": "Generar una Cita",
+      "isQuestion": false,
+      "isImperative": true,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Quiero tomar una cita en servicio al cliente",
+      "dialogKey": "Generar una Cita",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Yo quisiera saber si me puedes ayudar con el número de mi cuenta por no me lo sé.",
+      "dialogKey": "Consulta número de cuenta",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Tengo el acceso a mi internet banking cerrado y no recuerdo ni tengo el nombre de usuario",
+      "dialogKey": "Olvidé nombre de Usuario",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Quiero hacer una transferencia desde mi aplicación popular y me dice que no tengo mi toquen activado.",
+      "dialogKey": "Activación de Token",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "para saber cuándo puedo pasar a buscar la tarjeta de crédito ",
+      "dialogKey": "Estatus Tarjeta Inactiva",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cuándo me entregan mi tarjeta?",
+      "dialogKey": "Estatus Tarjeta Inactiva",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Solicité una tarjeta y aún no me la han enviado",
+      "dialogKey": "Estatus Tarjeta Inactiva",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Sigo esperando la tarjeta de crédito que me aprobaron",
+      "dialogKey": "Estatus Tarjeta Inactiva",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "no funciona mi tarjeta de crédito",
+      "dialogKey": "Estatus Tarjeta Activa",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Mi tarjeta de crédito está bloqueada?",
+      "dialogKey": "Estatus Tarjeta Activa",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "quiero bloquear mi tarjeta de crédito",
+      "dialogKey": "Bloqueo Tarjeta de Crédito",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "bloquea mi tarjeta de crédito",
+      "dialogKey": "Bloqueo Tarjeta de Crédito",
+      "isQuestion": false,
+      "isImperative": true,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Me gustaría saber si puedo obtener información sobre un depósito que se me hizo el domingo pasado ",
+      "dialogKey": "Consulta Historial de Transacciones",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Me gustaría saber de una solicitud de extracrédito",
+      "dialogKey": "Consulta Estatus de Solicitud",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "no recuerdo exactamente mi usuario",
+      "dialogKey": "Olvidé nombre de Usuario",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "yo quiero saber de una tarjeta que me ofrecieron y estaba en aprobación quiero saber qué pasó",
+      "dialogKey": "Estatus Tarjeta Inactiva",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Buenas, me gustaría saber cómo puedo comunicarme con mi oficial o representante de cuenta",
+      "dialogKey": "Información sobre Oficial de Cuentas",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿La cuenta digital uno la puedes cancelar por la misma app?",
+      "dialogKey": "Información sobre cancelación de cuenta",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "transferencia no se ha reflejado en mi cuenta ",
+      "dialogKey": "Consulta Historial de Transacciones",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "yo debía 43,314 y pagué 22 mil y en la aplicación me aparece que debo 26,260 ",
+      "dialogKey": "Consultar detalles de préstamo",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    }
+  ],
+  "dialogs": [
+    {
+      "dialogKey": "Avance de efectivo",
+      "description": "Avance de efectivo desde una tarjeta determinada hacia una cuenta determinada.",
+      "serviceKey": "Acciones Tarjeta de Crédito",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Información sobre Turnos y Citas",
+      "description": "Usuario desea información genera acerca de la ubicación de oficinas para turnos o citas.",
+      "serviceKey": "Preguntas Frecuentes",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Generar un Turno",
+      "description": "Usuario desea generar un turno para ser atendido a la mayor brevedad en una oficina determinada.",
+      "serviceKey": "Turnos y Citas",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Generar una Cita",
+      "description": "Usuario desea generar una cita con un oficial de cuentas en una oficina determinada.",
+      "serviceKey": "Turnos y Citas",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Olvidé nombre de Usuario",
+      "description": "Usuario desea conocer su nombre de usuario para Internet Banking",
+      "serviceKey": "Credenciales",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Activación de Token",
+      "description": "Usuario necesita información acerca de activación de token",
+      "serviceKey": "Preguntas Frecuentes",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Estatus Tarjeta Inactiva",
+      "description": "Usuario desea conocer el estado de su tarjeta aún inactiva y su próximo paso para obtenerla o utilizarla.",
+      "serviceKey": "Estatus de Tarjeta",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Estatus Tarjeta Activa",
+      "description": "Usuario desea conocer el estado de su tarjeta activada para solucionar problemas relacionados con su utilización o confirmar si fue bloqueada",
+      "serviceKey": "Estatus de Tarjeta",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Bloqueo Tarjeta de Crédito",
+      "description": "Usuario desea bloquear tarjeta de crédito.",
+      "serviceKey": "Estatus de Tarjeta",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Consulta Historial de Transacciones",
+      "description": "Usuario desea consultar una o varias transacciones de su historial",
+      "serviceKey": "Consulta detalles de cuenta",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Consulta Estatus de Solicitud",
+      "description": "Usuario desea saber el estatus de una solicitud",
+      "serviceKey": "Solicitudes",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Información sobre Oficial de Cuentas",
+      "description": "Usuario necesita saber cuál es su oficial de cuentas y cómo contactarlo.",
+      "serviceKey": "Preguntas Frecuentes",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Información sobre cancelación de cuenta",
+      "description": "Usuario desea conocer el proceso para eliminar una cuenta.",
+      "serviceKey": "Preguntas Frecuentes",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Consultar detalles de préstamo",
+      "description": "Usuario desea conocer todos los detalles de uno o varios de sus préstamos.",
+      "serviceKey": "Consulta Préstamo",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Consulta número de cuenta",
+      "description": "Usuario desea conocer el número de una o varias de sus cuentas bancarias.",
+      "serviceKey": "Consulta Cuenta",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Consulta balance de cuenta",
+      "description": "Usuario desea conocer el balance actual y/o balance disponible en una o varias cuentas bancarias.",
+      "serviceKey": "Consulta Cuenta",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Consultar detalles de cuenta",
+      "description": "Usuario desea conocer todos los detalles de una o varias de sus cuentas.",
+      "serviceKey": "Consulta Cuenta",
+      "objectType": "dialog"
+    }
+  ],
+  "services": [
+    {
+      "name": "Redireccionar a Telebanco",
+      "description": "Ofrece al usuario el número telefónico del Telebanco e información respecto a este canal",
+      "isTransactional": false,
+      "isAnalysisNeeded": false,
+      "isInProgress": true,
+      "isAuthRequired": false,
+      "isAPICallNeeded": false,
+      "altService": "Inténtelo más tarde",
+      "objectType": "service"
+    },
+    {
+      "name": "Inténtelo más tarde",
+      "description": "Ofrece disculpas al usuario por la indisposición del servidor y le exhorta a intentar su requerimiento más tarde.",
+      "isTransactional": false,
+      "isAnalysisNeeded": false,
+      "isInProgress": true,
+      "isAuthRequired": false,
+      "isAPICallNeeded": false,
+      "altService": "",
+      "objectType": "service"
+    },
+    {
+      "name": "Acciones Tarjeta de Crédito",
+      "description": "Ofrece distintas acciones a realizar con una tarjeta de crédito, así como saldarla, avance de efectivo, y pagar servicios y facturas",
+      "isTransactional": true,
+      "isAnalysisNeeded": false,
+      "isInProgress": false,
+      "isAuthRequired": true,
+      "isAPICallNeeded": true,
+      "altService": "Redireccionar a Telebanco",
+      "objectType": "service"
+    },
+    {
+      "name": "Preguntas Frecuentes",
+      "description": "Recopilación de las preguntas más frecuentes sobre procesos, canales o productos del banco.",
+      "isTransactional": false,
+      "isAnalysisNeeded": false,
+      "isInProgress": true,
+      "isAuthRequired": false,
+      "isAPICallNeeded": false,
+      "altService": "Redireccionar a Telebanco",
+      "objectType": "service"
+    },
+    {
+      "name": "Turnos y Citas",
+      "description": "Ofrece la interfaz para generar un turno o una cita en alguna sucursal en específico.",
+      "isTransactional": false,
+      "isAnalysisNeeded": false,
+      "isInProgress": false,
+      "isAuthRequired": false,
+      "isAPICallNeeded": true,
+      "altService": "Redireccionar a Telebanco",
+      "objectType": "service"
+    },
+    {
+      "name": "Credenciales",
+      "description": "Ofrece Información sobre credenciales de usuario y acciones para cambio de contraseña.",
+      "isTransactional": false,
+      "isAnalysisNeeded": false,
+      "isInProgress": false,
+      "isAuthRequired": true,
+      "isAPICallNeeded": true,
+      "altService": "Redireccionar a Telebanco",
+      "objectType": "service"
+    },
+    {
+      "name": "Estatus de Tarjeta",
+      "description": "Comprueba si el estatus de determinada tarjeta es activo o inactivo, y según esta respuesta consulta otras propiedades para dar seguimiento al estado actual de la misma y responder al usuario con el paso siguiente a efectuarse.",
+      "isTransactional": false,
+      "isAnalysisNeeded": true,
+      "isInProgress": false,
+      "isAuthRequired": true,
+      "isAPICallNeeded": true,
+      "altService": "Redireccionar a Telebanco",
+      "objectType": "service"
+    },
+    {
+      "name": "Consulta Préstamo",
+      "description": "Obtiene el balance a la fecha, monto cuota, disponible para desembolso, tasa de interés, próxima fecha de pago o el historial de transacciones de un préstamo.",
+      "isTransactional": false,
+      "isAnalysisNeeded": true,
+      "isInProgress": false,
+      "isAuthRequired": true,
+      "isAPICallNeeded": true,
+      "altService": "Redireccionar a Telebanco",
+      "objectType": "service"
+    },
+    {
+      "name": "Consulta Cuenta",
+      "description": "Obtiene el balance actual y disponible, total en tránsito, último corte y cuenta regional relacionado a un número de cuenta.",
+      "isTransactional": false,
+      "isAnalysisNeeded": true,
+      "isInProgress": false,
+      "isAuthRequired": true,
+      "isAPICallNeeded": true,
+      "altService": "Redireccionar a Telebanco",
+      "objectType": "service"
+    }
+  ]
+}

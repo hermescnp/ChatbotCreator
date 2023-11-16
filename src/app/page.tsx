@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react'
 import type { NextPage } from 'next'
 import { JsonForm } from '@/components/JsonForm'
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch"
+import { RelationshipMap } from '@/components/RelationshipMap'
 
 interface fieldConfig {
   fieldName: string;
@@ -173,6 +175,7 @@ const Home: NextPage = () => {
         <button className={`tablinks ${activeTab === 'utterances' ? 'active' : ''}`} onClick={() => openTab('utterances')}>Utterance Creator</button>
         <button className={`tablinks ${activeTab === 'dialogs' ? 'active' : ''}`} onClick={() => openTab('dialogs')}>Dialog Creator</button>
         <button className={`tablinks ${activeTab === 'services' ? 'active' : ''}`} onClick={() => openTab('services')}>Service Creator</button>
+        <button className={`tablinks ${activeTab === 'relationshipmap' ? 'active' : ''}`} onClick={() => openTab('relationshipmap')}>Relationship Map</button>
       </div>
 
       <div className={activeTab === 'utterances' ? '' : 'hidden'} >
@@ -185,6 +188,10 @@ const Home: NextPage = () => {
 
       <div className={activeTab === 'services' ? '' : 'hidden'} >
         <JsonForm objectType={'service'} fieldConfig={ServiceConfig} jsonArray={serviceJsonArray} setJsonArray={setServiceJsonArray} handleAddToJson={handleAddToJson} handleSaveJson={handleSaveJson} />
+      </div>
+
+      <div className={activeTab === 'relationshipmap' ? 'diagram-container' : 'hidden'} >
+        <RelationshipMap utterances={utteranceJsonArray} dialogs={dialogJsonArray} services={serviceJsonArray} />
       </div>
     </main>
   );
