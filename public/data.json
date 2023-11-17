@@ -1,55 +1,6 @@
 {
   "utterances": [
     {
-      "utterance": "¿Cuál es mi balance?",
-      "dialogKey": "Consulta de balance",
-      "isQuestion": true,
-      "isImperative": false,
-      "objectType": "utterance"
-    },
-    {
-      "utterance": "Quiero ver mi balance",
-      "dialogKey": "Consulta de balance",
-      "isQuestion": false,
-      "isImperative": false,
-      "objectType": "utterance"
-    },
-    {
-      "utterance": "cuanto tengo en mi cuenta",
-      "dialogKey": "Consulta de balance",
-      "isQuestion": true,
-      "isImperative": false,
-      "objectType": "utterance"
-    },
-    {
-      "utterance": "cuanto dinero tengo",
-      "dialogKey": "Consulta de balance",
-      "isQuestion": true,
-      "isImperative": false,
-      "objectType": "utterance"
-    },
-    {
-      "utterance": "cuanto tengo disponible",
-      "dialogKey": "Consulta de balance",
-      "isQuestion": true,
-      "isImperative": false,
-      "objectType": "utterance"
-    },
-    {
-      "utterance": "dime mi saldo",
-      "dialogKey": "Consulta de balance",
-      "isQuestion": false,
-      "isImperative": true,
-      "objectType": "utterance"
-    },
-    {
-      "utterance": "dame mi balance",
-      "dialogKey": "Consulta de balance",
-      "isQuestion": false,
-      "isImperative": true,
-      "objectType": "utterance"
-    },
-    {
       "utterance": "Quiero consultar mi cuenta",
       "dialogKey": "Consultar detalles de cuenta",
       "isQuestion": false,
@@ -342,6 +293,111 @@
       "isQuestion": false,
       "isImperative": false,
       "objectType": "utterance"
+    },
+    {
+      "utterance": "dame mi balance",
+      "dialogKey": "Consulta balance de cuenta",
+      "isQuestion": false,
+      "isImperative": true,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "dime mi saldo",
+      "dialogKey": "Consulta balance de cuenta",
+      "isQuestion": false,
+      "isImperative": true,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "cuanto tengo disponible",
+      "dialogKey": "Consulta balance de cuenta",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "cuanto dinero tengo",
+      "dialogKey": "Consulta balance de cuenta",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "cuanto tengo en mi cuenta",
+      "dialogKey": "Consulta balance de cuenta",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Quiero ver mi balance",
+      "dialogKey": "Consulta balance de cuenta",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cuál es mi balance?",
+      "dialogKey": "Consulta balance de cuenta",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": " Hola",
+      "dialogKey": "Saludo usuario autenticado",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Hola",
+      "dialogKey": "Saludo usuario no autenticado",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "saludos",
+      "dialogKey": "Saludo usuario no autenticado",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "buen día",
+      "dialogKey": "Saludo usuario no autenticado",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "saludos",
+      "dialogKey": "Saludo usuario autenticado",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "buen día",
+      "dialogKey": "Saludo usuario autenticado",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "klk",
+      "dialogKey": "Saludo usuario autenticado",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "klk",
+      "dialogKey": "Saludo usuario no autenticado",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
     }
   ],
   "dialogs": [
@@ -400,12 +456,6 @@
       "objectType": "dialog"
     },
     {
-      "dialogKey": "Consulta Historial de Transacciones",
-      "description": "Usuario desea consultar una o varias transacciones de su historial",
-      "serviceKey": "Consulta detalles de cuenta",
-      "objectType": "dialog"
-    },
-    {
       "dialogKey": "Consulta Estatus de Solicitud",
       "description": "Usuario desea saber el estatus de una solicitud",
       "serviceKey": "Solicitudes",
@@ -446,6 +496,66 @@
       "description": "Usuario desea conocer todos los detalles de una o varias de sus cuentas.",
       "serviceKey": "Consulta Cuenta",
       "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Consulta Historial de Transacciones",
+      "description": "Usuario desea ver una o varias transacciones efectuadas a través de determinada cuenta.",
+      "serviceKey": "Consulta Cuenta",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Saludo usuario no autenticado",
+      "description": "Usuario desea ser recibido e invitado a su primera interacción con el Bot.",
+      "serviceKey": "Bienvenida",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Saludo usuario autenticado",
+      "description": "Usuario identificado desea ser recibido e invitado a su primera interacción con el Bot.",
+      "serviceKey": "Bienvenida",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Saludo usuario para soporte",
+      "description": "Usuario en búsqueda de ayuda desea ser recibido e invitado a su primera interacción con el Bot.",
+      "serviceKey": "Bienvenida",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Recordatorio de Pago",
+      "description": "Usuario desea recibir un mensaje que le recuerde algún pago a punto de vencer.",
+      "serviceKey": "Bienvenida",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Anuncio de oferta",
+      "description": "Usuario desea recibir un mensaje para enterarse de alguna oferta disponible para su perfil.",
+      "serviceKey": "Bienvenida",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Transacción no reconocida",
+      "description": "Usuario desea reportar una transacción en su cuenta o tarjeta de la cual no reconoce el origen.",
+      "serviceKey": "Solicitudes",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Reporte de Fraude",
+      "description": "Usuario desea reportar un fraude relacionado a una tarjeta de crédito",
+      "serviceKey": "Solicitudes",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Reporte de Robo",
+      "description": "Usuario desea reportar una tarjeta como robada.",
+      "serviceKey": "Solicitudes",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Reporte de Pérdida",
+      "description": "Usuario desea reportar una tarjeta como pérdida.",
+      "serviceKey": "Solicitudes",
+      "objectType": "dialog"
     }
   ],
   "services": [
@@ -454,7 +564,7 @@
       "description": "Ofrece al usuario el número telefónico del Telebanco e información respecto a este canal",
       "isTransactional": false,
       "isAnalysisNeeded": false,
-      "isInProgress": true,
+      "isInformational": true,
       "isAuthRequired": false,
       "isAPICallNeeded": false,
       "altService": "Inténtelo más tarde",
@@ -465,7 +575,7 @@
       "description": "Ofrece disculpas al usuario por la indisposición del servidor y le exhorta a intentar su requerimiento más tarde.",
       "isTransactional": false,
       "isAnalysisNeeded": false,
-      "isInProgress": true,
+      "isInformational": true,
       "isAuthRequired": false,
       "isAPICallNeeded": false,
       "altService": "",
@@ -476,7 +586,7 @@
       "description": "Ofrece distintas acciones a realizar con una tarjeta de crédito, así como saldarla, avance de efectivo, y pagar servicios y facturas",
       "isTransactional": true,
       "isAnalysisNeeded": false,
-      "isInProgress": false,
+      "isInformational": false,
       "isAuthRequired": true,
       "isAPICallNeeded": true,
       "altService": "Redireccionar a Telebanco",
@@ -487,7 +597,7 @@
       "description": "Recopilación de las preguntas más frecuentes sobre procesos, canales o productos del banco.",
       "isTransactional": false,
       "isAnalysisNeeded": false,
-      "isInProgress": true,
+      "isInformational": true,
       "isAuthRequired": false,
       "isAPICallNeeded": false,
       "altService": "Redireccionar a Telebanco",
@@ -498,7 +608,7 @@
       "description": "Ofrece la interfaz para generar un turno o una cita en alguna sucursal en específico.",
       "isTransactional": false,
       "isAnalysisNeeded": false,
-      "isInProgress": false,
+      "isInformational": false,
       "isAuthRequired": false,
       "isAPICallNeeded": true,
       "altService": "Redireccionar a Telebanco",
@@ -509,7 +619,7 @@
       "description": "Ofrece Información sobre credenciales de usuario y acciones para cambio de contraseña.",
       "isTransactional": false,
       "isAnalysisNeeded": false,
-      "isInProgress": false,
+      "isInformational": false,
       "isAuthRequired": true,
       "isAPICallNeeded": true,
       "altService": "Redireccionar a Telebanco",
@@ -520,7 +630,7 @@
       "description": "Comprueba si el estatus de determinada tarjeta es activo o inactivo, y según esta respuesta consulta otras propiedades para dar seguimiento al estado actual de la misma y responder al usuario con el paso siguiente a efectuarse.",
       "isTransactional": false,
       "isAnalysisNeeded": true,
-      "isInProgress": false,
+      "isInformational": false,
       "isAuthRequired": true,
       "isAPICallNeeded": true,
       "altService": "Redireccionar a Telebanco",
@@ -531,7 +641,7 @@
       "description": "Obtiene el balance a la fecha, monto cuota, disponible para desembolso, tasa de interés, próxima fecha de pago o el historial de transacciones de un préstamo.",
       "isTransactional": false,
       "isAnalysisNeeded": true,
-      "isInProgress": false,
+      "isInformational": false,
       "isAuthRequired": true,
       "isAPICallNeeded": true,
       "altService": "Redireccionar a Telebanco",
@@ -542,10 +652,32 @@
       "description": "Obtiene el balance actual y disponible, total en tránsito, último corte y cuenta regional relacionado a un número de cuenta.",
       "isTransactional": false,
       "isAnalysisNeeded": true,
-      "isInProgress": false,
+      "isInformational": false,
       "isAuthRequired": true,
       "isAPICallNeeded": true,
       "altService": "Redireccionar a Telebanco",
+      "objectType": "service"
+    },
+    {
+      "name": "Solicitudes",
+      "description": "Obtiene la lista de solicitudes efectuadas por el usuario para mostrar una o varias en pantalla.",
+      "isTransactional": false,
+      "isAnalysisNeeded": false,
+      "isInformational": false,
+      "isAuthRequired": true,
+      "isAPICallNeeded": true,
+      "altService": "Redireccionar a Telebanco",
+      "objectType": "service"
+    },
+    {
+      "name": "Bienvenida",
+      "description": "Alternativas para saludar al cliente y darle la primera invitación a interactuar con el Bot.",
+      "isTransactional": false,
+      "isAnalysisNeeded": false,
+      "isInformational": true,
+      "isAuthRequired": false,
+      "isAPICallNeeded": false,
+      "altService": "Inténtelo más tarde",
       "objectType": "service"
     }
   ]

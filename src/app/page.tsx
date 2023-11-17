@@ -4,6 +4,7 @@ import type { NextPage } from 'next'
 import { JsonForm } from '@/components/JsonForm'
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch"
 import { RelationshipMap } from '@/components/RelationshipMap'
+import { DialogAnalyzer } from '@/components/DialogAnalyzer'
 
 interface fieldConfig {
   fieldName: string;
@@ -49,7 +50,7 @@ const Home: NextPage = () => {
     { fieldName: 'description', label: 'Description', type: 'string' },
     { fieldName: 'isTransactional', label: 'Transactional Service', type: 'boolean' },
     { fieldName: 'isAnalysisNeeded', label: 'Analyzed Result (operation needed)', type: 'boolean' },
-    { fieldName: 'isInProgress', label: 'Informational only', type: 'boolean' },
+    { fieldName: 'isInformational', label: 'Informational only', type: 'boolean' },
     { fieldName: 'isAuthRequired', label: 'Authentication required', type: 'boolean' },
     { fieldName: 'isAPICallNeeded', label: 'Needs BPD API call', type: 'boolean' },
     { fieldName: 'altService', label: 'Alternative Service', type: 'string' }
@@ -87,35 +88,35 @@ const Home: NextPage = () => {
 
   const handleUploadJson = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
-  
+
     if (file) {
-      const fileReader = new FileReader();
-      
-      fileReader.onload = (e) => {
-        const content = e.target?.result;
-        try {
-          const data = content ? JSON.parse(content.toString()) : null;
-          if (data && Array.isArray(data)) {
-            const utterances = data.filter(item => item.objectType === 'utterance');
-            const dialogs = data.filter(item => item.objectType === 'dialog');
-            const services = data.filter(item => item.objectType === 'service');
-  
-            setUtteranceJsonArray(utterances);
-            setDialogJsonArray(dialogs);
-            setServiceJsonArray(services);
-          }
-        } catch (error) {
-          console.error('Error parsing JSON file:', error);
-        }
-      };
-  
-      fileReader.onerror = (error) => {
-        console.error('Error reading file:', error);
-      };
-  
-      fileReader.readAsText(file);
+        const fileReader = new FileReader();
+        
+        fileReader.onload = (e) => {
+            const content = e.target?.result;
+            try {
+                const data = content ? JSON.parse(content.toString()) : null;
+                if (data && typeof data === 'object') {
+                    const utterances = data.utterances || [];
+                    const dialogs = data.dialogs || [];
+                    const services = data.services || [];
+
+                    setUtteranceJsonArray(utterances);
+                    setDialogJsonArray(dialogs);
+                    setServiceJsonArray(services);
+                }
+            } catch (error) {
+                console.error('Error parsing JSON file:', error);
+            }
+        };
+
+        fileReader.onerror = (error) => {
+            console.error('Error reading file:', error);
+        };
+
+        fileReader.readAsText(file);
     }
-  };  
+};
 
   useEffect(() => {
     localStorage.setItem(localStorageKeys.utterances, JSON.stringify(utteranceJsonArray));
@@ -176,6 +177,7 @@ const Home: NextPage = () => {
         <button className={`tablinks ${activeTab === 'dialogs' ? 'active' : ''}`} onClick={() => openTab('dialogs')}>Dialog Creator</button>
         <button className={`tablinks ${activeTab === 'services' ? 'active' : ''}`} onClick={() => openTab('services')}>Service Creator</button>
         <button className={`tablinks ${activeTab === 'relationshipmap' ? 'active' : ''}`} onClick={() => openTab('relationshipmap')}>Relationship Map</button>
+        <button className={`tablinks ${activeTab === 'dialogAnalysis' ? 'active' : ''}`} onClick={() => openTab('dialogAnalysis')}>Dialog Analysis</button>
       </div>
 
       <div className={activeTab === 'utterances' ? '' : 'hidden'} >
@@ -192,6 +194,10 @@ const Home: NextPage = () => {
 
       <div className={activeTab === 'relationshipmap' ? 'diagram-container' : 'hidden'} >
         <RelationshipMap utterances={utteranceJsonArray} dialogs={dialogJsonArray} services={serviceJsonArray} />
+      </div>
+
+      <div className={activeTab === 'dialogAnalysis' ? '' : 'hidden'} >
+        <DialogAnalyzer utterances={utteranceJsonArray} dialogs={dialogJsonArray} services={serviceJsonArray} />
       </div>
     </main>
   );
