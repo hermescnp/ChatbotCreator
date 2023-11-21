@@ -1,0 +1,44 @@
+{"dialogs": [
+    {
+        "dialogKey": "Información sobre Turnos y Citas",
+        "description": "Usuario desea información genera acerca de la ubicación de oficinas para turnos o citas.",
+        "serviceKey": "Preguntas Frecuentes",
+        "objectType": "dialog"
+      },
+      {
+        "dialogKey": "Activación de Token",
+        "description": "Usuario necesita información acerca de activación de token",
+        "serviceKey": "Preguntas Frecuentes",
+        "objectType": "dialog"
+      },
+      {
+        "dialogKey": "Información sobre Oficial de Cuentas",
+        "description": "Usuario necesita saber cuál es su oficial de cuentas y cómo contactarlo.",
+        "serviceKey": "Preguntas Frecuentes",
+        "objectType": "dialog"
+      },
+      {
+        "dialogKey": "Información sobre cancelación de cuenta",
+        "description": "Usuario desea conocer el proceso para eliminar una cuenta.",
+        "serviceKey": "Preguntas Frecuentes",
+        "objectType": "dialog"
+      },
+      {
+        "dialogKey": "Información sobre Beneficiarios",
+        "description": "Usuario desea información respecto a los beneficiarios.",
+        "serviceKey": "Preguntas Frecuentes",
+        "objectType": "dialog"
+      },
+      {
+        "dialogKey": "Información sobre Cheques",
+        "description": "Usuario desea información respecto cambio, depósitos u otras inquietudes respecto a los cheques.",
+        "serviceKey": "Preguntas Frecuentes",
+        "objectType": "dialog"
+      },
+      {
+        "dialogKey": "Información sobre Código Cash",
+        "description": "Usuario desea información respecto a la funcionalidad de Código Cash con sus opciones de retiro, consulta y creación.",
+        "serviceKey": "Preguntas Frecuentes",
+        "objectType": "dialog"
+      }
+]}

@@ -18,12 +18,12 @@ export default function generateMermaidChart(utterances: any[], dialogs: any[], 
 
             // Add dialog node if not already added
             if (!nodeSet.has(dialogId)) {
-                diagram += `${dialogId}["${utterance.dialogKey}"]\n`;
+                diagram += `${dialogId}{{"${utterance.dialogKey}"}}\n`;
                 nodeSet.add(dialogId);
             }
 
             // Connect utterance to dialog
-            diagram += `${utteranceId} --> ${dialogId}\n`;
+            diagram += `${utteranceId} -.-> ${dialogId}\n`;
         }
     });
 
@@ -33,10 +33,11 @@ export default function generateMermaidChart(utterances: any[], dialogs: any[], 
         const service = services.find(s => s.name === dialog.serviceKey);
         if (service) {
             const serviceId = createSafeId('Service', service.name);
+            const serviceProperties = (service.isTransactional ? '\n(Transaccional)' : '') + (service.isAnalysisNeeded ? '\n(Requiere Operación)' : '') + (service.isInformational ? '\n(Solo Informativo)' : '');
 
             // Add service node if not already added
             if (!nodeSet.has(serviceId)) {
-                diagram += `${serviceId}["${service.name}"]\n`;
+                diagram += `${serviceId}(("${service.name + serviceProperties}"))\n`;
                 nodeSet.add(serviceId);
             }
 
@@ -55,5 +56,5 @@ export default function generateMermaidChart(utterances: any[], dialogs: any[], 
     mermaidDiv.className = 'mermaid';
     mermaidDiv.innerHTML = diagram;
 
-    return diagram;
+    return (diagram);
 }

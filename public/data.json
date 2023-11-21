@@ -1,55 +1,6 @@
 {
   "utterances": [
     {
-      "utterance": "¿Cuál es mi balance?",
-      "dialogKey": "Consulta de balance",
-      "isQuestion": true,
-      "isImperative": false,
-      "objectType": "utterance"
-    },
-    {
-      "utterance": "Quiero ver mi balance",
-      "dialogKey": "Consulta de balance",
-      "isQuestion": false,
-      "isImperative": false,
-      "objectType": "utterance"
-    },
-    {
-      "utterance": "cuanto tengo en mi cuenta",
-      "dialogKey": "Consulta de balance",
-      "isQuestion": true,
-      "isImperative": false,
-      "objectType": "utterance"
-    },
-    {
-      "utterance": "cuanto dinero tengo",
-      "dialogKey": "Consulta de balance",
-      "isQuestion": true,
-      "isImperative": false,
-      "objectType": "utterance"
-    },
-    {
-      "utterance": "cuanto tengo disponible",
-      "dialogKey": "Consulta de balance",
-      "isQuestion": true,
-      "isImperative": false,
-      "objectType": "utterance"
-    },
-    {
-      "utterance": "dime mi saldo",
-      "dialogKey": "Consulta de balance",
-      "isQuestion": false,
-      "isImperative": true,
-      "objectType": "utterance"
-    },
-    {
-      "utterance": "dame mi balance",
-      "dialogKey": "Consulta de balance",
-      "isQuestion": false,
-      "isImperative": true,
-      "objectType": "utterance"
-    },
-    {
       "utterance": "Quiero consultar mi cuenta",
       "dialogKey": "Consultar detalles de cuenta",
       "isQuestion": false,
@@ -106,29 +57,22 @@
       "objectType": "utterance"
     },
     {
-      "utterance": "¿Cuales oficinas tinen turnos o citas?",
-      "dialogKey": "Información sobre Turnos y Citas",
-      "isQuestion": true,
-      "isImperative": false,
-      "objectType": "utterance"
-    },
-    {
       "utterance": "¿cuales sucursales tienen turnos?",
-      "dialogKey": "Información sobre Turnos y Citas",
+      "dialogKey": "Sucursales con Turnos y Citas",
       "isQuestion": true,
       "isImperative": false,
       "objectType": "utterance"
     },
     {
       "utterance": "¿En cuales sucursales puedo hacer citas?",
-      "dialogKey": "Información sobre Turnos y Citas",
+      "dialogKey": "Sucursales con Turnos y Citas",
       "isQuestion": true,
       "isImperative": false,
       "objectType": "utterance"
     },
     {
       "utterance": "¿Cual sucursal me atiende más rápido?",
-      "dialogKey": "Información sobre Turnos y Citas",
+      "dialogKey": "Sucursales con Turnos y Citas",
       "isQuestion": true,
       "isImperative": false,
       "objectType": "utterance"
@@ -156,7 +100,7 @@
     },
     {
       "utterance": "¿cómo hago que me atiendan de primero en la sucursal?",
-      "dialogKey": "Información sobre Turnos y Citas",
+      "dialogKey": "Sucursales con Turnos y Citas",
       "isQuestion": false,
       "isImperative": false,
       "objectType": "utterance"
@@ -170,7 +114,7 @@
     },
     {
       "utterance": "quiero evitar hacer fila en el banco",
-      "dialogKey": "Información sobre Turnos y Citas",
+      "dialogKey": "Sucursales con Turnos y Citas",
       "isQuestion": false,
       "isImperative": false,
       "objectType": "utterance"
@@ -220,13 +164,6 @@
     {
       "utterance": "Tengo el acceso a mi internet banking cerrado y no recuerdo ni tengo el nombre de usuario",
       "dialogKey": "Olvidé nombre de Usuario",
-      "isQuestion": false,
-      "isImperative": false,
-      "objectType": "utterance"
-    },
-    {
-      "utterance": "Quiero hacer una transferencia desde mi aplicación popular y me dice que no tengo mi toquen activado.",
-      "dialogKey": "Activación de Token",
       "isQuestion": false,
       "isImperative": false,
       "objectType": "utterance"
@@ -316,20 +253,6 @@
       "objectType": "utterance"
     },
     {
-      "utterance": "Buenas, me gustaría saber cómo puedo comunicarme con mi oficial o representante de cuenta",
-      "dialogKey": "Información sobre Oficial de Cuentas",
-      "isQuestion": true,
-      "isImperative": false,
-      "objectType": "utterance"
-    },
-    {
-      "utterance": "¿La cuenta digital uno la puedes cancelar por la misma app?",
-      "dialogKey": "Información sobre cancelación de cuenta",
-      "isQuestion": true,
-      "isImperative": false,
-      "objectType": "utterance"
-    },
-    {
       "utterance": "transferencia no se ha reflejado en mi cuenta ",
       "dialogKey": "Consulta Historial de Transacciones",
       "isQuestion": false,
@@ -342,6 +265,559 @@
       "isQuestion": false,
       "isImperative": false,
       "objectType": "utterance"
+    },
+    {
+      "utterance": "dame mi balance",
+      "dialogKey": "Consulta balance de cuenta",
+      "isQuestion": false,
+      "isImperative": true,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "dime mi saldo",
+      "dialogKey": "Consulta balance de cuenta",
+      "isQuestion": false,
+      "isImperative": true,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "cuanto tengo disponible",
+      "dialogKey": "Consulta balance de cuenta",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "cuanto dinero tengo",
+      "dialogKey": "Consulta balance de cuenta",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "cuanto tengo en mi cuenta",
+      "dialogKey": "Consulta balance de cuenta",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Quiero ver mi balance",
+      "dialogKey": "Consulta balance de cuenta",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cuál es mi balance?",
+      "dialogKey": "Consulta balance de cuenta",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": " Hola",
+      "dialogKey": "Saludo usuario autenticado",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Hola",
+      "dialogKey": "Saludo usuario no autenticado",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "saludos",
+      "dialogKey": "Saludo usuario no autenticado",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "buen día",
+      "dialogKey": "Saludo usuario no autenticado",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "saludos",
+      "dialogKey": "Saludo usuario autenticado",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "buen día",
+      "dialogKey": "Saludo usuario autenticado",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "klk",
+      "dialogKey": "Saludo usuario autenticado",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "klk",
+      "dialogKey": "Saludo usuario no autenticado",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Quiero ver los detalles de mi cita",
+      "dialogKey": "Consulta de turno o cita",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Quiero ver los detalles de mi turno",
+      "dialogKey": "Consulta de turno o cita",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "a cuanto compran dolar?",
+      "dialogKey": "Tasa del día",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cuál es la tasa del dolar?",
+      "dialogKey": "Tasa del día",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "a cuanto me cambian un dolar",
+      "dialogKey": "Tasa del día",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "a cuanto está el dolar?",
+      "dialogKey": "Tasa del día",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Quiero pagar la luz",
+      "dialogKey": "Pago de servicio agregado",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "quiero pagar el teléfono",
+      "dialogKey": "Pago de servicio agregado",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "quiero pagar una factura",
+      "dialogKey": "Pago de servicio expreso",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "cual es el correo de José Ramirez",
+      "dialogKey": "Consulta detalles de beneficiario",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "muéstrame el correo de Juana Lopez",
+      "dialogKey": "Consulta detalles de beneficiario",
+      "isQuestion": false,
+      "isImperative": true,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cuál es el número de cuenta de Rodrigo?",
+      "dialogKey": "Consulta detalles de beneficiario",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Quiero agregar a Luisa Gutierrez a mis beneficiarios",
+      "dialogKey": "Agregar beneficiario",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "quiero agregar un nuevo beneficiario",
+      "dialogKey": "Agregar beneficiario",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Quiero hacer una transferencia desde mi aplicación popular y me dice que no tengo mi toquen activado.",
+      "dialogKey": "Activación de Token",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Buenas, me gustaría saber cómo puedo comunicarme con mi oficial o representante de cuenta",
+      "dialogKey": "Contactar Oficial de Cuentas",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿La cuenta digital uno la puedes cancelar por la misma app?",
+      "dialogKey": "Cancelación de Cuenta",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cómo cancelo mi cuenta?",
+      "dialogKey": "Cancelación de Cuenta",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Quiero eliminar mi cuenta de ahorros",
+      "dialogKey": "Cancelación de Cuenta",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cómo puedo agregar beneficiarios con mis huellas dactilares?",
+      "dialogKey": "Beneficiarios Huellas Dactilares",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "no me funcionan las huellas para agregar un beneficiario",
+      "dialogKey": "Beneficiarios Huellas Dactilares",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "la validación de huellas no me deja agregar el beneficiario",
+      "dialogKey": "Beneficiarios Huellas Dactilares",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cómo puedo agregar beneficiarios de servicios desde la aplicación?",
+      "dialogKey": "Procedimientos para Agregar Beneficiarios",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Qué es un código cash?",
+      "dialogKey": "Información General Código Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿De qué trata código cash?",
+      "dialogKey": "Información General Código Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Para qué sirve un código cash?",
+      "dialogKey": "Información General Código Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cuáles son los pasos para generar un código cash?",
+      "dialogKey": "Procedimientos para Generar Código Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cómo genero un código cash?",
+      "dialogKey": "Procedimientos para Generar Código Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cómo se crea un código cash?",
+      "dialogKey": "Procedimientos para Generar Código Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cuál es el procedimiento para generar un código cash?",
+      "dialogKey": "Procedimientos para Generar Código Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cuál es el procedimiento para retirar un código cash en el cajera?",
+      "dialogKey": "Procedimientos para Retirar Código Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cómo retiro el código cash?",
+      "dialogKey": "Procedimientos para Retirar Código Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Quiero saber como saco mi efectivo de código cash del cajero",
+      "dialogKey": "Procedimientos para Retirar Código Cash",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Qué datos me pide el app para generar un código cash?",
+      "dialogKey": "Datos requeridos para Generar Código Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Qué datos necesito para generar un código cash?",
+      "dialogKey": "Datos requeridos para Generar Código Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Qué informaciones se necesitan para generar un código cash?",
+      "dialogKey": "Datos requeridos para Generar Código Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cuáles cosas se necesitan para generar un código cash?",
+      "dialogKey": "Datos requeridos para Generar Código Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cuáles datos se necesitan para retirar un código cash?",
+      "dialogKey": "Datos requeridos para Retirar Código Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Qué me pregunta el cajero para retirar un código cash?",
+      "dialogKey": "Datos requeridos para Retirar Código Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Qué me pide el cajero automático para retirar un código cash?",
+      "dialogKey": "Datos requeridos para Retirar Código Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Qué datos necesita el cajero para retirar un código cash?",
+      "dialogKey": "Datos requeridos para Retirar Código Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Tengo problemas para retirar un código cash en el cajero",
+      "dialogKey": "Problemas al Retirar Código Cash",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "el cajero está dando fallo al intentar retirar código cash",
+      "dialogKey": "Problemas al Retirar Código Cash",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "el cajero automático retira mi código cash",
+      "dialogKey": "Problemas al Retirar Código Cash",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "no puedo retirar un código cash",
+      "dialogKey": "Problemas al Retirar Código Cash",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "El App está fallando al generar Código Cash",
+      "dialogKey": "Problemas al Generar Código Cash",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "tengo problemas para crear un Código Cash",
+      "dialogKey": "Problemas al Generar Código Cash",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "El App no quiere generar Código Cash",
+      "dialogKey": "Problemas al Generar Código Cash",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "no puedo cancelar el Código Cash que creé",
+      "dialogKey": "Problemas al Cancelar Código Cash",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "el App está fallando al eliminar un Código cash",
+      "dialogKey": "Problemas al Cancelar Código Cash",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "no puedo eliminar el código cash",
+      "dialogKey": "Problemas al Cancelar Código Cash",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cómo cancelo un Código Cash?",
+      "dialogKey": "Procedimientos para Cancelar Código Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cómo elimino un Código Cash?",
+      "dialogKey": "Procedimientos para Cancelar Código Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cómo puedo ver mis Códigos Cash?",
+      "dialogKey": "Procedimientos para Consultar Códigos Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Quiero ver los Códigos Cash que ya creé",
+      "dialogKey": "Procedimientos para Consultar Códigos Cash",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Quiero ver mis Códigos Cash",
+      "dialogKey": "Procedimientos para Consultar Códigos Cash",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cómo puedo ver los Códigos Cash eliminados?",
+      "dialogKey": "Procedimientos para Consultar Códigos Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cómo puedo ver los Códigos Cash cancelados?",
+      "dialogKey": "Procedimientos para Consultar Códigos Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cuántos Códigos Cash puedo crear a la vez?",
+      "dialogKey": "Limites Códigos Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cuál es el máximo monto que puedo pagar a través de Código Cash?",
+      "dialogKey": "Limites Códigos Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Tienen fecha de vencimiento los Códigos Cash?",
+      "dialogKey": "Limites Códigos Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Puedo editar un Código Cash luego de creado?",
+      "dialogKey": "Editar Código Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cuándo se debita el dinero de la cuenta al hacer un código cash?",
+      "dialogKey": "Débito a Cuenta Código Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Desde cuales cajeros puedo retirar un código cash?",
+      "dialogKey": "Cajeros Disponibles Código Cash",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
     }
   ],
   "dialogs": [
@@ -349,12 +825,6 @@
       "dialogKey": "Avance de efectivo",
       "description": "Avance de efectivo desde una tarjeta determinada hacia una cuenta determinada.",
       "serviceKey": "Acciones Tarjeta de Crédito",
-      "objectType": "dialog"
-    },
-    {
-      "dialogKey": "Información sobre Turnos y Citas",
-      "description": "Usuario desea información genera acerca de la ubicación de oficinas para turnos o citas.",
-      "serviceKey": "Preguntas Frecuentes",
       "objectType": "dialog"
     },
     {
@@ -376,12 +846,6 @@
       "objectType": "dialog"
     },
     {
-      "dialogKey": "Activación de Token",
-      "description": "Usuario necesita información acerca de activación de token",
-      "serviceKey": "Preguntas Frecuentes",
-      "objectType": "dialog"
-    },
-    {
       "dialogKey": "Estatus Tarjeta Inactiva",
       "description": "Usuario desea conocer el estado de su tarjeta aún inactiva y su próximo paso para obtenerla o utilizarla.",
       "serviceKey": "Estatus de Tarjeta",
@@ -400,27 +864,9 @@
       "objectType": "dialog"
     },
     {
-      "dialogKey": "Consulta Historial de Transacciones",
-      "description": "Usuario desea consultar una o varias transacciones de su historial",
-      "serviceKey": "Consulta detalles de cuenta",
-      "objectType": "dialog"
-    },
-    {
       "dialogKey": "Consulta Estatus de Solicitud",
       "description": "Usuario desea saber el estatus de una solicitud",
       "serviceKey": "Solicitudes",
-      "objectType": "dialog"
-    },
-    {
-      "dialogKey": "Información sobre Oficial de Cuentas",
-      "description": "Usuario necesita saber cuál es su oficial de cuentas y cómo contactarlo.",
-      "serviceKey": "Preguntas Frecuentes",
-      "objectType": "dialog"
-    },
-    {
-      "dialogKey": "Información sobre cancelación de cuenta",
-      "description": "Usuario desea conocer el proceso para eliminar una cuenta.",
-      "serviceKey": "Preguntas Frecuentes",
       "objectType": "dialog"
     },
     {
@@ -446,6 +892,240 @@
       "description": "Usuario desea conocer todos los detalles de una o varias de sus cuentas.",
       "serviceKey": "Consulta Cuenta",
       "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Consulta Historial de Transacciones",
+      "description": "Usuario desea ver una o varias transacciones efectuadas a través de determinada cuenta.",
+      "serviceKey": "Consulta Cuenta",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Saludo usuario no autenticado",
+      "description": "Usuario desea ser recibido e invitado a su primera interacción con el Bot.",
+      "serviceKey": "Bienvenida",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Saludo usuario autenticado",
+      "description": "Usuario identificado desea ser recibido e invitado a su primera interacción con el Bot.",
+      "serviceKey": "Bienvenida",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Saludo usuario para soporte",
+      "description": "Usuario en búsqueda de ayuda desea ser recibido e invitado a su primera interacción con el Bot.",
+      "serviceKey": "Bienvenida",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Recordatorio de Pago",
+      "description": "Usuario desea recibir un mensaje que le recuerde algún pago a punto de vencer.",
+      "serviceKey": "Bienvenida",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Anuncio de oferta",
+      "description": "Usuario desea recibir un mensaje para enterarse de alguna oferta disponible para su perfil.",
+      "serviceKey": "Bienvenida",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Transacción no reconocida",
+      "description": "Usuario desea reportar una transacción en su cuenta o tarjeta de la cual no reconoce el origen.",
+      "serviceKey": "Solicitudes",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Reporte de Fraude",
+      "description": "Usuario desea reportar un fraude relacionado a una tarjeta de crédito",
+      "serviceKey": "Solicitudes",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Reporte de Robo",
+      "description": "Usuario desea reportar una tarjeta como robada.",
+      "serviceKey": "Solicitudes",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Reporte de Pérdida",
+      "description": "Usuario desea reportar una tarjeta como pérdida.",
+      "serviceKey": "Solicitudes",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Consulta de turno o cita",
+      "description": "Usuario desea consultar los detalles de un turno o cita creado anteriormente.",
+      "serviceKey": "Turnos y Citas",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Tasa del día",
+      "description": "Usuario desea conocer la tasa actual de un tipo de divisa determinada.",
+      "serviceKey": "Consulta Tasa de Cambio",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Pago de servicio expreso",
+      "description": "Usuario desea pagar un servicio que no ha sido agregado a sus beneficiarios.",
+      "serviceKey": "Pago de Servicios",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Pago de servicio agregado",
+      "description": "Usuario desea pagar un servicio previamente agregado a sus beneficiarios.",
+      "serviceKey": "Pago de Servicios",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Consulta detalles de beneficiario",
+      "description": "Usuario desea consultar los detalles de uno de sus beneficiarios agregados.",
+      "serviceKey": "Beneficiarios",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Agregar beneficiario",
+      "description": "Usuario quiere agregar un nuevo beneficiario a su lista",
+      "serviceKey": "Beneficiarios",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Sucursales con Turnos y Citas",
+      "description": "Usuario desea conocer cuales sucursales cuentan con turnos digitales o se puede pautar citas desde el App.",
+      "serviceKey": "FAQ: Turnos y Citas",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Activación de Token",
+      "description": "Usuario desea conocer los pasos para activar su token Popular.",
+      "serviceKey": "FAQ: Token",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Contactar Oficial de Cuentas",
+      "description": "Usuario desea información sobre cómo contactar su oficial de cuentas o algún otro oficial que le proporcione respuesta a sus intereses.",
+      "serviceKey": "FAQ: Oficial de Cuentas",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Cancelación de Cuenta",
+      "description": "Usuario quiere cancelar o eliminar una cuenta bancaria.",
+      "serviceKey": "FAQ: Cuentas",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Procedimientos para Agregar Beneficiarios",
+      "description": "Usuario desea conocer el proceso para agregar un beneficiario a su perfil, ya sea del Popular, interbancario, internacional, o un servicio.",
+      "serviceKey": "FAQ: Beneficiarios",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Beneficiarios Huellas Dactilares",
+      "description": "Usuario tiene problemas o dudas respecto al uso de sus huellas dactilares a la hora de agregar un beneficiario interbancario.",
+      "serviceKey": "FAQ: Beneficiarios",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Procedimientos para Consultar Beneficiarios",
+      "description": "Usuario desea conocer los pasos para consultar su listado de beneficiarios en el App",
+      "serviceKey": "FAQ: Beneficiarios",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Procedimientos para eliminar beneficiario",
+      "description": "Usuario desea conocer el procedimiento para eliminar un beneficiario de su perfil.",
+      "serviceKey": "FAQ: Beneficiarios",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Problemas con Cámara Huellas Dactilares",
+      "description": "Usuario tiene problemas para proceder con el requerimiento de sus huellas dactilares en el App.",
+      "serviceKey": "FAQ: Huellas Dactilares",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Información General Código Cash",
+      "description": "Usuario desea conocer la definición general de la funcionalidad de Código Cash en el banco.",
+      "serviceKey": "FAQ: Código Cash",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Procedimientos para Generar Código Cash",
+      "description": "Usuario desea conocer los procedimientos para generar un código cash en la Aplicación.",
+      "serviceKey": "FAQ: Código Cash",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Procedimientos para Retirar Código Cash",
+      "description": "Usuario desea conocer los procedimientos para retirar un código cash desde un cajero automático o cualquier otro medio posible.",
+      "serviceKey": "FAQ: Código Cash",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Datos requeridos para Generar Código Cash",
+      "description": "Usuario desea conocer cuáles datos necesita proporcionar para generar un código cash.",
+      "serviceKey": "FAQ: Código Cash",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Datos requeridos para Retirar Código Cash",
+      "description": "Usuario desea conocer cuáles datos necesita proporcionar para retirar un código cash.",
+      "serviceKey": "FAQ: Código Cash",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Problemas al Retirar Código Cash",
+      "description": "Usuario tiene problemas para retirar un código cash.",
+      "serviceKey": "FAQ: Código Cash",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Problemas al Generar Código Cash",
+      "description": "Usuario tiene problemas para generar un código cash.",
+      "serviceKey": "FAQ: Código Cash",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Problemas al Cancelar Código Cash",
+      "description": "Usuario tiene problemas para cancelar un código cash.",
+      "serviceKey": "FAQ: Código Cash",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Procedimientos para Cancelar Código Cash",
+      "description": "Usuario desea conocer los procedimientos para cancelar un código cash.",
+      "serviceKey": "FAQ: Código Cash",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Procedimientos para Consultar Códigos Cash",
+      "description": "Usuario desea conocer los procedimientos para consultar sus códigos cash tanto activos como expirados",
+      "serviceKey": "FAQ: Código Cash",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Limites Códigos Cash",
+      "description": "Usuario desea conocer las limitaciones tanto de tiempo como de cantidad de códigos cash que puede crear",
+      "serviceKey": "FAQ: Código Cash",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Editar Código Cash",
+      "description": "Usuario desea conocer si existe forma de editar un código cash que ya haya sido creado.",
+      "serviceKey": "FAQ: Código Cash",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Débito a Cuenta Código Cash",
+      "description": "Usuario desea conocer detalles respecto al momento y forma en que se debita el dinero de la cuenta que efectúa un código cash.",
+      "serviceKey": "FAQ: Código Cash",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Cajeros Disponibles Código Cash",
+      "description": "Usuario desea conocer cuales cajeros están disponibles para efectuar un retiro de código cash.",
+      "serviceKey": "FAQ: Código Cash",
+      "objectType": "dialog"
     }
   ],
   "services": [
@@ -454,7 +1134,7 @@
       "description": "Ofrece al usuario el número telefónico del Telebanco e información respecto a este canal",
       "isTransactional": false,
       "isAnalysisNeeded": false,
-      "isInProgress": true,
+      "isInformational": true,
       "isAuthRequired": false,
       "isAPICallNeeded": false,
       "altService": "Inténtelo más tarde",
@@ -465,7 +1145,7 @@
       "description": "Ofrece disculpas al usuario por la indisposición del servidor y le exhorta a intentar su requerimiento más tarde.",
       "isTransactional": false,
       "isAnalysisNeeded": false,
-      "isInProgress": true,
+      "isInformational": true,
       "isAuthRequired": false,
       "isAPICallNeeded": false,
       "altService": "",
@@ -476,7 +1156,7 @@
       "description": "Ofrece distintas acciones a realizar con una tarjeta de crédito, así como saldarla, avance de efectivo, y pagar servicios y facturas",
       "isTransactional": true,
       "isAnalysisNeeded": false,
-      "isInProgress": false,
+      "isInformational": false,
       "isAuthRequired": true,
       "isAPICallNeeded": true,
       "altService": "Redireccionar a Telebanco",
@@ -487,7 +1167,7 @@
       "description": "Recopilación de las preguntas más frecuentes sobre procesos, canales o productos del banco.",
       "isTransactional": false,
       "isAnalysisNeeded": false,
-      "isInProgress": true,
+      "isInformational": true,
       "isAuthRequired": false,
       "isAPICallNeeded": false,
       "altService": "Redireccionar a Telebanco",
@@ -498,7 +1178,7 @@
       "description": "Ofrece la interfaz para generar un turno o una cita en alguna sucursal en específico.",
       "isTransactional": false,
       "isAnalysisNeeded": false,
-      "isInProgress": false,
+      "isInformational": false,
       "isAuthRequired": false,
       "isAPICallNeeded": true,
       "altService": "Redireccionar a Telebanco",
@@ -509,7 +1189,7 @@
       "description": "Ofrece Información sobre credenciales de usuario y acciones para cambio de contraseña.",
       "isTransactional": false,
       "isAnalysisNeeded": false,
-      "isInProgress": false,
+      "isInformational": false,
       "isAuthRequired": true,
       "isAPICallNeeded": true,
       "altService": "Redireccionar a Telebanco",
@@ -520,7 +1200,7 @@
       "description": "Comprueba si el estatus de determinada tarjeta es activo o inactivo, y según esta respuesta consulta otras propiedades para dar seguimiento al estado actual de la misma y responder al usuario con el paso siguiente a efectuarse.",
       "isTransactional": false,
       "isAnalysisNeeded": true,
-      "isInProgress": false,
+      "isInformational": false,
       "isAuthRequired": true,
       "isAPICallNeeded": true,
       "altService": "Redireccionar a Telebanco",
@@ -531,7 +1211,7 @@
       "description": "Obtiene el balance a la fecha, monto cuota, disponible para desembolso, tasa de interés, próxima fecha de pago o el historial de transacciones de un préstamo.",
       "isTransactional": false,
       "isAnalysisNeeded": true,
-      "isInProgress": false,
+      "isInformational": false,
       "isAuthRequired": true,
       "isAPICallNeeded": true,
       "altService": "Redireccionar a Telebanco",
@@ -542,9 +1222,163 @@
       "description": "Obtiene el balance actual y disponible, total en tránsito, último corte y cuenta regional relacionado a un número de cuenta.",
       "isTransactional": false,
       "isAnalysisNeeded": true,
-      "isInProgress": false,
+      "isInformational": false,
       "isAuthRequired": true,
       "isAPICallNeeded": true,
+      "altService": "Redireccionar a Telebanco",
+      "objectType": "service"
+    },
+    {
+      "name": "Solicitudes",
+      "description": "Obtiene la lista de solicitudes efectuadas por el usuario para mostrar una o varias en pantalla.",
+      "isTransactional": false,
+      "isAnalysisNeeded": false,
+      "isInformational": false,
+      "isAuthRequired": true,
+      "isAPICallNeeded": true,
+      "altService": "Redireccionar a Telebanco",
+      "objectType": "service"
+    },
+    {
+      "name": "Bienvenida",
+      "description": "Alternativas para saludar al cliente y darle la primera invitación a interactuar con el Bot.",
+      "isTransactional": false,
+      "isAnalysisNeeded": false,
+      "isInformational": true,
+      "isAuthRequired": false,
+      "isAPICallNeeded": false,
+      "altService": "Inténtelo más tarde",
+      "objectType": "service"
+    },
+    {
+      "name": "Consulta Tasa de Cambio",
+      "description": "Obtiene la tasa del día de un tipo de moneda determinado.",
+      "isTransactional": false,
+      "isAnalysisNeeded": false,
+      "isInformational": false,
+      "isAuthRequired": false,
+      "isAPICallNeeded": true,
+      "altService": "Redireccionar a Telebanco",
+      "objectType": "service"
+    },
+    {
+      "name": "Pago de Servicios",
+      "description": "Permite pagar una factura correspondiente a un servicio.",
+      "isTransactional": true,
+      "isAnalysisNeeded": false,
+      "isInformational": false,
+      "isAuthRequired": true,
+      "isAPICallNeeded": true,
+      "altService": "Redireccionar a Internet Banking",
+      "objectType": "service"
+    },
+    {
+      "name": "Redireccionar a Internet Banking",
+      "description": "Ofrece al usuario el los pasos para entrar a la web oficial del banco.",
+      "isTransactional": false,
+      "isAnalysisNeeded": false,
+      "isInformational": true,
+      "isAuthRequired": false,
+      "isAPICallNeeded": false,
+      "altService": "Inténtelo más tarde",
+      "objectType": "service"
+    },
+    {
+      "name": "Beneficiarios",
+      "description": "Agrega un beneficiario al perfil del usuario indicando de manera opcional un Alias y un correo.",
+      "isTransactional": false,
+      "isAnalysisNeeded": false,
+      "isInformational": false,
+      "isAuthRequired": true,
+      "isAPICallNeeded": true,
+      "altService": "Redireccionar a Internet Banking",
+      "objectType": "service"
+    },
+    {
+      "name": "FAQ: Turnos y Citas",
+      "description": "Información general acerca de la ubicación de oficinas para turnos o citas y procedimientos para generar un turno o una cita.",
+      "isTransactional": false,
+      "isAnalysisNeeded": false,
+      "isInformational": true,
+      "isAuthRequired": false,
+      "isAPICallNeeded": false,
+      "altService": "Redireccionar a Telebanco",
+      "objectType": "service"
+    },
+    {
+      "name": "FAQ: Oficial de Cuentas",
+      "description": "Información sobre oficial de cuentas y cómo contactarlo.",
+      "isTransactional": false,
+      "isAnalysisNeeded": false,
+      "isInformational": true,
+      "isAuthRequired": false,
+      "isAPICallNeeded": false,
+      "altService": "Redireccionar a Telebanco",
+      "objectType": "service"
+    },
+    {
+      "name": "FAQ: Beneficiarios",
+      "description": "Información respecto a los beneficiarios.",
+      "isTransactional": false,
+      "isAnalysisNeeded": false,
+      "isInformational": true,
+      "isAuthRequired": false,
+      "isAPICallNeeded": false,
+      "altService": "Redireccionar a Telebanco",
+      "objectType": "service"
+    },
+    {
+      "name": "FAQ: Cheques",
+      "description": "Información respecto cambio, depósitos u otras inquietudes respecto a los cheques.",
+      "isTransactional": false,
+      "isAnalysisNeeded": false,
+      "isInformational": true,
+      "isAuthRequired": false,
+      "isAPICallNeeded": false,
+      "altService": "Redireccionar a Telebanco",
+      "objectType": "service"
+    },
+    {
+      "name": "FAQ: Código Cash",
+      "description": "información respecto a la funcionalidad de Código Cash con sus opciones de retiro, consulta y creación.",
+      "isTransactional": false,
+      "isAnalysisNeeded": false,
+      "isInformational": true,
+      "isAuthRequired": false,
+      "isAPICallNeeded": false,
+      "altService": "Redireccionar a Telebanco",
+      "objectType": "service"
+    },
+    {
+      "name": "FAQ: Token",
+      "description": "Información acerca del uso de token, activación, cambio y problemas relacionados",
+      "isTransactional": false,
+      "isAnalysisNeeded": false,
+      "isInformational": true,
+      "isAuthRequired": false,
+      "isAPICallNeeded": false,
+      "altService": "Redireccionar a Telebanco",
+      "objectType": "service"
+    },
+    {
+      "name": "FAQ: Cuentas",
+      "description": "Información acerca de los procesos para creación, gestión, eliminación y problemas relacionados al producto Cuentas",
+      "isTransactional": false,
+      "isAnalysisNeeded": false,
+      "isInformational": true,
+      "isAuthRequired": false,
+      "isAPICallNeeded": false,
+      "altService": "Redireccionar a Telebanco",
+      "objectType": "service"
+    },
+    {
+      "name": "FAQ: Huellas Dactilares",
+      "description": "Información sobre los problemas más frecuentes respecto a la validación a través de las huellas dactilares",
+      "isTransactional": false,
+      "isAnalysisNeeded": false,
+      "isInformational": true,
+      "isAuthRequired": false,
+      "isAPICallNeeded": false,
       "altService": "Redireccionar a Telebanco",
       "objectType": "service"
     }
