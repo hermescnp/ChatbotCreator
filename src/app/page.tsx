@@ -15,21 +15,9 @@ const Home: NextPage = () => {
   const [activeTab, setActiveTab] = useState<string>('utterances');
   const [jsonArray, setJsonArray] = useState<any[]>([]);
 
-  const localStorageKeys: any = {
-    utterances: 'utterancesData',
-    dialogs: 'dialogsData',
-    services: 'servicesData',
-  };
-
-  const [utteranceJsonArray, setUtteranceJsonArray] = useState<any[]>(() => {
-    return JSON.parse(localStorage.getItem(localStorageKeys.utterances) || '[]');
-  });
-  const [dialogJsonArray, setDialogJsonArray] = useState<any[]>(() => {
-    return JSON.parse(localStorage.getItem(localStorageKeys.dialogs) || '[]');
-  });
-  const [serviceJsonArray, setServiceJsonArray] = useState<any[]>(() => {
-    return JSON.parse(localStorage.getItem(localStorageKeys.services) || '[]');
-  });
+  const [utteranceJsonArray, setUtteranceJsonArray] = useState<any[]>([]);
+  const [dialogJsonArray, setDialogJsonArray] = useState<any[]>([]);
+  const [serviceJsonArray, setServiceJsonArray] = useState<any[]>([]);
 
   const utteranceConfig: fieldConfig[] = [
     { fieldName: 'utterance', label: 'Utterance', type: 'string' },
@@ -139,18 +127,6 @@ const Home: NextPage = () => {
         console.error('Error loading default data:', error);
       });
   };
-
-  useEffect(() => {
-    localStorage.setItem(localStorageKeys.utterances, JSON.stringify(utteranceJsonArray));
-  }, [utteranceJsonArray]);
-
-  useEffect(() => {
-    localStorage.setItem(localStorageKeys.dialogs, JSON.stringify(dialogJsonArray));
-  }, [dialogJsonArray]);
-
-  useEffect(() => {
-    localStorage.setItem(localStorageKeys.services, JSON.stringify(serviceJsonArray));
-  }, [serviceJsonArray]);
 
   useEffect(() => {
     // This function updates the jsonArray depending on the active tab

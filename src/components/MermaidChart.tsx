@@ -1,4 +1,13 @@
-export default function generateMermaidChart(utterances: any[], dialogs: any[], services: any[]) {
+"use client"
+import React from 'react'
+
+interface MermaidChartProps {
+    utterances: any[];
+    dialogs: any[];
+    services: any[];
+}
+
+export const MermaidChart: React.FC<MermaidChartProps> = ({ utterances, dialogs, services }): any => {
 
     let diagram = 'graph LR\n';
     let utteranceCounter = 0;
@@ -48,10 +57,5 @@ export default function generateMermaidChart(utterances: any[], dialogs: any[], 
         }
     });
 
-    // Create a new mermaid div
-    const mermaidDiv = document.createElement('div');
-    mermaidDiv.className = 'mermaid';
-    mermaidDiv.innerHTML = diagram;
-
-    return (diagram);
+    return diagram;
 }

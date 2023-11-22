@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useRef, useState } from 'react'
 import type { default as MermaidType } from 'mermaid'
-import generateMermaidChart from './MermaidChart'
+import { MermaidChart } from './MermaidChart'
 
 interface RelationshipMapProps {
     utterances: any[];
@@ -24,7 +24,7 @@ export const RelationshipMap: React.FC<RelationshipMapProps> = ({ utterances, di
     </head>
     <body>
       <div class="mermaid"> 
-      ${generateMermaidChart(utterances, dialogs, services)}
+      ${MermaidChart({utterances, dialogs, services})}
       </div>
     </body>
     </html>
