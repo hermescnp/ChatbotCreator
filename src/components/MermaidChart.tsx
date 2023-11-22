@@ -1,3 +1,4 @@
+"use client"
 export default function generateMermaidChart(utterances: any[], dialogs: any[], services: any[]) {
 
     let diagram = 'graph LR\n';
