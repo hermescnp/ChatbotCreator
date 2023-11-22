@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { JsonDisplay } from './JsonDisplay'
-import ConfirmationModal from '@/components/ConfirmationModal'
+import { ConfirmationModal } from './ConfirmationModal'
 
 // Define a type for the field configuration
 interface fieldConfig {

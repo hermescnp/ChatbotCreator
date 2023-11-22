@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react'
 import type { NextPage } from 'next'
 import { JsonForm } from '@/components/JsonForm'
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch"
 import { RelationshipMap } from '@/components/RelationshipMap'
 import { DialogAnalyzer } from '@/components/DialogAnalyzer'
 

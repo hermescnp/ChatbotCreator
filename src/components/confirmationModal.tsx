@@ -6,7 +6,7 @@ interface ConfirmationModalProps {
   onCancel: () => void; // Function to call when "Cancel" is clicked
 }
 
-const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ isOpen, onConfirm, onCancel }) => {
+export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ isOpen, onConfirm, onCancel }) => {
   if (!isOpen) {
     return null; // Don't render the modal if it's not open
   }
@@ -28,5 +28,3 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ isOpen, onConfirm
     </div>
   );
 };
-
-export default ConfirmationModal;
