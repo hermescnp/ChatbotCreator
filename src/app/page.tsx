@@ -61,7 +61,7 @@ const Home: NextPage = () => {
   };
 
   const handleAddToJson = (newItem: any) => {
-    setJsonArray(prevArray => [...prevArray, newItem]);
+    setJsonArray((prevArray: any) => [...prevArray, newItem]);
   };
 
   const handleSaveJson = () => {
@@ -71,52 +71,75 @@ const Home: NextPage = () => {
       dialogs: dialogJsonArray,
       services: serviceJsonArray,
     };
-  
+
     // Create a blob from the combined data
     const blob = new Blob([JSON.stringify(combinedData, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
-  
+
     // Create a temporary anchor tag to initiate download
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'data.json'; // You can name the download file as per your preference
+    a.download = 'data.json';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-  };  
+  };
 
   const handleUploadJson = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
 
     if (file) {
-        const fileReader = new FileReader();
-        
-        fileReader.onload = (e) => {
-            const content = e.target?.result;
-            try {
-                const data = content ? JSON.parse(content.toString()) : null;
-                if (data && typeof data === 'object') {
-                    const utterances = data.utterances || [];
-                    const dialogs = data.dialogs || [];
-                    const services = data.services || [];
+      const fileReader = new FileReader();
 
-                    setUtteranceJsonArray(utterances);
-                    setDialogJsonArray(dialogs);
-                    setServiceJsonArray(services);
-                }
-            } catch (error) {
-                console.error('Error parsing JSON file:', error);
-            }
-        };
+      fileReader.onload = (e) => {
+        const content = e.target?.result;
+        try {
+          const data = content ? JSON.parse(content.toString()) : null;
+          if (data && typeof data === 'object') {
+            const utterances = data.utterances || [];
+            const dialogs = data.dialogs || [];
+            const services = data.services || [];
 
-        fileReader.onerror = (error) => {
-            console.error('Error reading file:', error);
-        };
+            setUtteranceJsonArray(utterances);
+            setDialogJsonArray(dialogs);
+            setServiceJsonArray(services);
+          }
+        } catch (error) {
+          console.error('Error parsing JSON file:', error);
+        }
+      };
 
-        fileReader.readAsText(file);
+      fileReader.onerror = (error) => {
+        console.error('Error reading file:', error);
+      };
+
+      fileReader.readAsText(file);
     }
-};
+  };
+
+  const handleLoadDefaultData = () => {
+
+    fetch('data.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        const utterances = data.utterances || [];
+        const dialogs = data.dialogs || [];
+        const services = data.services || [];
+
+        setUtteranceJsonArray(utterances);
+        setDialogJsonArray(dialogs);
+        setServiceJsonArray(services);
+      })
+      .catch(error => {
+        console.error('Error loading default data:', error);
+      });
+  };
 
   useEffect(() => {
     localStorage.setItem(localStorageKeys.utterances, JSON.stringify(utteranceJsonArray));
@@ -170,6 +193,7 @@ const Home: NextPage = () => {
           <div id="uploadContainer" className='menu-button' >
             <input type="file" onChange={handleUploadJson} />
           </div>
+          <button id="loadDefaultBtn" className='menu-button' onClick={handleLoadDefaultData}>Load Default</button>
         </div>
       </div>
       <div className="tab">

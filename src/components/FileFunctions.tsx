@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 export const UploadFile = (event: React.ChangeEvent<HTMLInputElement>) => {
     const fileReader = new FileReader();

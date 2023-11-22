@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import type { FC } from 'react';
+import React, { useState, useEffect } from 'react'
 
 interface DialogAnalyzerProps {
     utterances: any[];
@@ -7,7 +6,7 @@ interface DialogAnalyzerProps {
     services: any[];
 }
 
-export const DialogAnalyzer: FC<DialogAnalyzerProps> = ({ utterances, dialogs, services }) => {
+export const DialogAnalyzer: React.FC<DialogAnalyzerProps> = ({ utterances, dialogs, services }) => {
     const [exclusiveWordsMap, setExclusiveWordsMap] = useState<{ [key: string]: string[] }>({});
     const [frequentWordsMap, setFrequentWordsMap] = useState<{ [key: string]: string[] }>({});
 
@@ -17,13 +16,13 @@ export const DialogAnalyzer: FC<DialogAnalyzerProps> = ({ utterances, dialogs, s
 
         dialogs.forEach(dialog => {
             const dialogKey = dialog.dialogKey;
-            const currentUtterances = utterances.filter(item => item.dialogKey === dialogKey);
-            const currentWords = currentUtterances.flatMap(item => item.utterance ? processWords(item.utterance) : []);
+            const currentUtterances = utterances.filter((item: any) => item.dialogKey === dialogKey);
+            const currentWords = currentUtterances.flatMap((item: any) => item.utterance ? processWords(item.utterance) : []);
 
             // Calculate exclusive words
-            const otherUtterances = utterances.filter(item => item.dialogKey !== dialogKey);
-            const otherWords = otherUtterances.flatMap(item => item.utterance ? processWords(item.utterance) : []);
-            const uniqueWords = new Set(currentWords.filter(word => !otherWords.includes(word)));
+            const otherUtterances = utterances.filter((item: any) => item.dialogKey !== dialogKey);
+            const otherWords = otherUtterances.flatMap((item: any) => item.utterance ? processWords(item.utterance) : []);
+            const uniqueWords = new Set(currentWords.filter((word: string) => !otherWords.includes(word)));
             newExclusiveWordsMap[dialogKey] = Array.from(uniqueWords);
 
             // Calculate frequent words

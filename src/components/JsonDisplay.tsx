@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 interface JsonItem {
   [key: string]: any; // Changed to a more generic type to accommodate different fields
