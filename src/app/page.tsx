@@ -21,15 +21,9 @@ const Home: NextPage = () => {
     services: 'servicesData',
   };
 
-  const [utteranceJsonArray, setUtteranceJsonArray] = useState<any[]>(() => {
-    return JSON.parse(localStorage?.getItem(localStorageKeys.utterances) || '[]');
-  });
-  const [dialogJsonArray, setDialogJsonArray] = useState<any[]>(() => {
-    return JSON.parse(localStorage?.getItem(localStorageKeys.dialogs) || '[]');
-  });
-  const [serviceJsonArray, setServiceJsonArray] = useState<any[]>(() => {
-    return JSON.parse(localStorage?.getItem(localStorageKeys.services) || '[]');
-  });
+  const [utteranceJsonArray, setUtteranceJsonArray] = useState<any[]>([]);
+  const [dialogJsonArray, setDialogJsonArray] = useState<any[]>([]);
+  const [serviceJsonArray, setServiceJsonArray] = useState<any[]>([]);
 
   const utteranceConfig: fieldConfig[] = [
     { fieldName: 'utterance', label: 'Utterance', type: 'string' },
