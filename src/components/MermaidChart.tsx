@@ -48,9 +48,6 @@ export default function generateMermaidChart(utterances: any[], dialogs: any[], 
         }
     });
 
-    // Log the final diagram string
-    console.log('Mermaid Diagram:', diagram);
-
     // Create a new mermaid div
     const mermaidDiv = document.createElement('div');
     mermaidDiv.className = 'mermaid';

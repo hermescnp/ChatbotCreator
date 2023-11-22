@@ -1,6 +1,5 @@
 "use client"
 import React, { useEffect, useRef, useState } from 'react'
-import type { FC } from 'react'
 import type { default as MermaidType } from 'mermaid'
 import generateMermaidChart from './MermaidChart'
 
@@ -10,7 +9,7 @@ interface RelationshipMapProps {
     services: any[];
 }
 
-export const RelationshipMap: FC<RelationshipMapProps> = ({ utterances, dialogs, services }) => {
+export const RelationshipMap: React.FC<RelationshipMapProps> = ({ utterances, dialogs, services }) => {
     const mermaidRef = useRef<HTMLDivElement>(null);
     const defaultDiagram = "flowchart LR\nAgf[utterance] -->|?| Bgf(dialogKey)\nBgf[dialogKey] --> C(Service)"
     const [mermaid, setMermaid] = useState<typeof MermaidType | null>(null);
