@@ -22,13 +22,13 @@ const Home: NextPage = () => {
   };
 
   const [utteranceJsonArray, setUtteranceJsonArray] = useState<any[]>(() => {
-    return JSON.parse(localStorage.getItem(localStorageKeys.utterances) || '[]');
+    return JSON.parse(localStorage?.getItem(localStorageKeys.utterances) || '[]');
   });
   const [dialogJsonArray, setDialogJsonArray] = useState<any[]>(() => {
-    return JSON.parse(localStorage.getItem(localStorageKeys.dialogs) || '[]');
+    return JSON.parse(localStorage?.getItem(localStorageKeys.dialogs) || '[]');
   });
   const [serviceJsonArray, setServiceJsonArray] = useState<any[]>(() => {
-    return JSON.parse(localStorage.getItem(localStorageKeys.services) || '[]');
+    return JSON.parse(localStorage?.getItem(localStorageKeys.services) || '[]');
   });
 
   const utteranceConfig: fieldConfig[] = [
