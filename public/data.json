@@ -818,6 +818,202 @@
       "isQuestion": true,
       "isImperative": false,
       "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Qué es el token digital?",
+      "dialogKey": "Información General Token Digital",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cómo instalo el Token Popular con huella digital?",
+      "dialogKey": "Procedimiento para instalar Token",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Que pasa si la app no lee mis huellas?",
+      "dialogKey": "Problemas para instalar Token",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Que pasa si la app lee mis huellas exitosamente?",
+      "dialogKey": "Información General Token Digital",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cuantos intentos tengo si la app no lee mis huellas?",
+      "dialogKey": "Información General Token Digital",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Para que se usa el Token Digital Popular?",
+      "dialogKey": "Información General Token Digital",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Qué sucede si no puedo leer los terminos y condiciones?",
+      "dialogKey": "Problemas con Términos y Condiciones Token Digital",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Como instalo el token digital si ya tengo el código de seguridad?",
+      "dialogKey": "Procedimiento para instalar Token",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Como veo el código del Token al usar Internet Banking?",
+      "dialogKey": "Procedimiento visualización Token Digital",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Como cancelo la instalación del Token si no quiero finalizarla?",
+      "dialogKey": "Cancelación proceso de instalación Token Digital",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Puedo usar biometria para instalar el Token si solo tengo pasaporte extranjero?",
+      "dialogKey": "Información General Token Digital",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Debo escanear mi huella para hacer una transacción?",
+      "dialogKey": "Información General Token Digital",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Por qué el Token Digital necesita acceso a la camara de mi telefono?",
+      "dialogKey": "Información General Token Digital",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Qué tipo de dispositivo móvil necesito para completar el proceso y desde qué versión está disponible esta funcionalidad en el App Popular?",
+      "dialogKey": "Información General Token Digital",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cómo puedo usar el Token Popular Digital en diferentes canales?",
+      "dialogKey": "Información General Token Digital",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cómo instalo el token digital si tengo dos perfiles de Internet Banking con tokens asignados?",
+      "dialogKey": "Información General Token Digital",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Puedo usar el token físico y digital a la vez? Al activar el Token Popular Digital, ¿el token físico se desactiva automáticamente?",
+      "dialogKey": "Información General Token Digital",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Qué debo hacer si no recibo el código de seguridad durante la reinstalación del Token Popular Digital en mi App Popular, ya sea por correo electrónico o por SMS?",
+      "dialogKey": "Procedimiento Reinstalación Token Digital",
+      "isQuestion": false,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Qué opción elijo al hacer una transacción en el App Popular?",
+      "dialogKey": "Procedimiento de utilización Token Digital",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cómo desinstalo el Token Popular Digital en mi App?",
+      "dialogKey": "Procedimiento de desinstalación Token Digital",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Qué debo hacer con mi token digital si cambio de dispositivo?",
+      "dialogKey": "Procedimiento de cambio de dispositivo Token Digital",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "Mi Token Popular Digital está instalado pero no funciona al hacer una transacción.",
+      "dialogKey": "Problema al utilizar Token Digital",
+      "isQuestion": false,
+      "isImperative": true,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿El Token Digital tiene algún costo?",
+      "dialogKey": "Información General Token Digital",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Cómo consulto el token si mi celular está dañado o cambié de equipo?",
+      "dialogKey": "Información General Token Digital",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿El Token digital funciona sin plan de datos o fuera del país?",
+      "dialogKey": "Información General Token Digital",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Qué hago si estoy fuera del país y quiero instalar el Token Digital?",
+      "dialogKey": "Procedimiento para instalar Token",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Por qué necesito ir a una oficina para instalar el Token Digital?",
+      "dialogKey": "Información General Token Digital",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
+    },
+    {
+      "utterance": "¿Como instalo el Token si la camara de mi dispositivo no funciona?",
+      "dialogKey": "Problemas para instalar Token",
+      "isQuestion": true,
+      "isImperative": false,
+      "objectType": "utterance"
     }
   ],
   "dialogs": [
@@ -1126,6 +1322,72 @@
       "description": "Usuario desea conocer cuales cajeros están disponibles para efectuar un retiro de código cash.",
       "serviceKey": "FAQ: Código Cash",
       "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Información General Token Digital",
+      "description": "Usuario quiere saber qué es el token digital y para qué sirve",
+      "serviceKey": "FAQ: Token Popular",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Procedimiento para instalar Token",
+      "description": "Usuario quiere saber como instalar el Token Popular",
+      "serviceKey": "FAQ: Token Popular",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Problemas para instalar Token",
+      "description": "Usuario presenta dificultades al instalar el Token Digital",
+      "serviceKey": "FAQ: Token Popular",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Problemas con información Token Digital",
+      "description": "Usuario presenta dificultades al no conocer sobre el Token Digital",
+      "serviceKey": "FAQ: Token Popular",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Procedimiento visualización Token Digital",
+      "description": "Usuario quiere saber como ver su token digital",
+      "serviceKey": "FAQ: Token Popular",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Procedimiento de cancelación para instalación del Token Digital",
+      "description": "Usuario quiere saber como ver cancelar la instalación del Token Digital",
+      "serviceKey": "FAQ: Token Popular",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Procedimiento Reinstalación Token Digital",
+      "description": "Usuario quiere saber como reinstalar su Token Digital en otro dispositivo ",
+      "serviceKey": "FAQ: Token Popular",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Procedimiento de utilización Token Digital",
+      "description": "Usuario quiere saber como utilizar su Token Digital",
+      "serviceKey": "FAQ: Token Popular",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Procedimiento de desinstalación Token Digital",
+      "description": "Usuario quiere saber como desinstalar su Token Digital",
+      "serviceKey": "FAQ: Token Popular",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Procedimiento de cambio de dispositivo Token Digital",
+      "description": "Usuario quiere saber como cambiar su Token Digital de Dispositivo",
+      "serviceKey": "FAQ: Token Popular",
+      "objectType": "dialog"
+    },
+    {
+      "dialogKey": "Problema al utilizar Token Digital",
+      "description": "Usuario presenta dificultades al utilizar su Token Digital",
+      "serviceKey": "FAQ: Token Popular",
+      "objectType": "dialog"
     }
   ],
   "services": [
@@ -1374,6 +1636,17 @@
     {
       "name": "FAQ: Huellas Dactilares",
       "description": "Información sobre los problemas más frecuentes respecto a la validación a través de las huellas dactilares",
+      "isTransactional": false,
+      "isAnalysisNeeded": false,
+      "isInformational": true,
+      "isAuthRequired": false,
+      "isAPICallNeeded": false,
+      "altService": "Redireccionar a Telebanco",
+      "objectType": "service"
+    },
+    {
+      "name": "FAQ: Token Popular",
+      "description": "Información general, uso y problemas relacionados a token digital o físico.",
       "isTransactional": false,
       "isAnalysisNeeded": false,
       "isInformational": true,
