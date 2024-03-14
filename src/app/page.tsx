@@ -4,6 +4,7 @@ import type { NextPage } from 'next'
 import { JsonForm } from '@/components/JsonForm'
 import { RelationshipMap } from '@/components/RelationshipMap'
 import { DialogAnalyzer } from '@/components/DialogAnalyzer'
+import { UtteranceAnalyzer } from '@/components/UtteranceAnalyzer'
 
 interface fieldConfig {
   fieldName: string;
@@ -177,6 +178,7 @@ const Home: NextPage = () => {
         <button className={`tablinks ${activeTab === 'services' ? 'active' : ''}`} onClick={() => openTab('services')}>Service Creator</button>
         <button className={`tablinks ${activeTab === 'relationshipmap' ? 'active' : ''}`} onClick={() => openTab('relationshipmap')}>Relationship Map</button>
         <button className={`tablinks ${activeTab === 'dialogAnalysis' ? 'active' : ''}`} onClick={() => openTab('dialogAnalysis')}>Dialog Analysis</button>
+        <button className={`tablinks ${activeTab === 'utteranceAnalysis' ? 'active' : ''}`} onClick={() => openTab('utteranceAnalysis')}>Explode Utterance</button>
       </div>
 
       <div className={activeTab === 'utterances' ? '' : 'hidden'} >
@@ -198,6 +200,16 @@ const Home: NextPage = () => {
       <div className={activeTab === 'dialogAnalysis' ? '' : 'hidden'} >
         <DialogAnalyzer utterances={utteranceJsonArray} dialogs={dialogJsonArray} services={serviceJsonArray} />
       </div>
+
+      <div className={activeTab === 'utteranceAnalysis' ? '' : 'hidden'}>
+        <UtteranceAnalyzer
+          utterances={utteranceJsonArray}
+          dialogs={dialogJsonArray}
+          services={serviceJsonArray}
+          setUtterances={setUtteranceJsonArray} // Asegúrate de pasar esta función
+        />
+      </div>
+
     </main>
   );
 };
