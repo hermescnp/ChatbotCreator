@@ -9,12 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "mermaid": "^10.6.1",
     "next": "14.0.0",
     "react": "^18",
     "react-dom": "^18",
     "react-pan-zoom": "^1.0.2",
-    "react-zoom-pan-pinch": "^3.3.0"
+    "react-zoom-pan-pinch": "^3.3.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/node": "^20",

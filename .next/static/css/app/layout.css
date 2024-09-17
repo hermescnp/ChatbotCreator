@@ -3,68 +3,68 @@
   \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /* cyrillic-ext */
 @font-face {
-  font-family: '__Inter_e66fe9';
+  font-family: '__Inter_36bd41';
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/_next/static/media/ec159349637c90ad-s.woff2) format('woff2');
+  src: url(/_next/static/media/55c55f0601d81cf3-s.woff2) format('woff2');
   unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
 /* cyrillic */
 @font-face {
-  font-family: '__Inter_e66fe9';
+  font-family: '__Inter_36bd41';
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/_next/static/media/513657b02c5c193f-s.woff2) format('woff2');
+  src: url(/_next/static/media/26a46d62cd723877-s.woff2) format('woff2');
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
 /* greek-ext */
 @font-face {
-  font-family: '__Inter_e66fe9';
+  font-family: '__Inter_36bd41';
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/_next/static/media/fd4db3eb5472fc27-s.woff2) format('woff2');
+  src: url(/_next/static/media/97e0cb1ae144a2a9-s.woff2) format('woff2');
   unicode-range: U+1F00-1FFF;
 }
 /* greek */
 @font-face {
-  font-family: '__Inter_e66fe9';
+  font-family: '__Inter_36bd41';
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/_next/static/media/51ed15f9841b9f9d-s.woff2) format('woff2');
-  unicode-range: U+0370-03FF;
+  src: url(/_next/static/media/581909926a08bbc8-s.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
 }
 /* vietnamese */
 @font-face {
-  font-family: '__Inter_e66fe9';
+  font-family: '__Inter_36bd41';
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/_next/static/media/05a31a2ca4975f99-s.woff2) format('woff2');
+  src: url(/_next/static/media/df0a9ae256c0569c-s.woff2) format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
 /* latin-ext */
 @font-face {
-  font-family: '__Inter_e66fe9';
+  font-family: '__Inter_36bd41';
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/_next/static/media/d6b16ce4a6175f26-s.woff2) format('woff2');
-  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  src: url(/_next/static/media/6d93bde91c0c2823-s.woff2) format('woff2');
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 /* latin */
 @font-face {
-  font-family: '__Inter_e66fe9';
+  font-family: '__Inter_36bd41';
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url(/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2) format('woff2');
+  src: url(/_next/static/media/a34f9d1faa5f3315-s.p.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}@font-face {font-family: '__Inter_Fallback_e66fe9';src: local("Arial");ascent-override: 90.20%;descent-override: 22.48%;line-gap-override: 0.00%;size-adjust: 107.40%
-}.__className_e66fe9 {font-family: '__Inter_e66fe9', '__Inter_Fallback_e66fe9';font-style: normal
+}@font-face {font-family: '__Inter_Fallback_36bd41';src: local("Arial");ascent-override: 90.20%;descent-override: 22.48%;line-gap-override: 0.00%;size-adjust: 107.40%
+}.__className_36bd41 {font-family: '__Inter_36bd41', '__Inter_Fallback_36bd41';font-style: normal
 }
 
 /*!*****************************************************************************************************************************************************************************************************************************************************************!*\
@@ -80,10 +80,6 @@ body {
   font-family: 'Arial', sans-serif;
   background-color: #f4f4f4;
   padding: 20px;
-}
-
-div {
-  margin-bottom: 10px;
 }
 
 .diagram-container {
@@ -182,8 +178,7 @@ input[type="checkbox"] {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-bottom: solid 1px lightgrey;
-  padding: 10px 10px 20px 10px;
+  padding: 10px 10px 10px 10px;
   gap: 15px;
 }
 
@@ -215,6 +210,181 @@ button:hover {
   margin-top: 20px;
 }
 
+/* Light version of the navigation buttons */
+.nav-button {
+  background-color: #f1f1f1; /* Light background color */
+  color: #002B49; /* Primary color for text to maintain brand consistency */
+  border: 1px solid #ccc; /* Light border for the buttons */
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 8px 12px; /* Compact padding */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+}
+
+.nav-button:hover {
+  background-color: #ddd; /* Slightly darker shade for hover effect */
+  color: black; /* Darker text color on hover for contrast */
+}
+
+.nav-button:disabled {
+  background-color: #e6e6e6; /* Light gray for disabled state */
+  color: #999; /* Lighter text color for disabled state */
+  cursor: not-allowed; /* Indicate non-interactable state */
+}
+
+/* Light style for the "Add Key Word" button */
+.light-button {
+  background-color: #f1f1f1; /* Light background color */
+  color: #002B49; /* Primary color for text */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 20px; /* Padding for the light button */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transitions for hover */
+}
+
+.light-button:hover {
+  background-color: #ddd; /* Slightly darker shade for hover effect */
+  color: black; /* Darker text color on hover */
+}
+
+/* Primary style for the "Analyze" button */
+.primary-button {
+  background-color: #002B49; /* Darker primary color */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 20px; 
+  transition: background-color 0.3s; /* Smooth transition for hover */
+}
+
+.primary-button:hover {
+  background-color: black; /* A darker shade for hover effect */
+}
+
+/* Container to wrap the input and dropdown */
+.dropdown-container {
+  position: relative; /* This makes the dropdown absolute position relative to this container */
+  width: 100%; /* Ensure it matches the parent width */
+}
+
+/* Dropdown styling */
+.dropdown {
+  position: absolute; /* Absolute position relative to .dropdown-container */
+  top: 100%; /* Position below the input field */
+  left: 0;
+  right: 0; /* Ensure the dropdown width matches the input field */
+  max-height: 300px;
+  overflow-y: scroll; /* Always show scrollbar */
+  background-color: white;
+  border: 1px solid #ccc;
+  z-index: 1000;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  scrollbar-width: thin; /* Firefox - shows a thin scrollbar */
+  scrollbar-color: #888 #f0f0f0; /* Firefox - custom scrollbar color */
+}
+
+/* Webkit-based browsers (Chrome, Safari) scrollbar styling */
+.dropdown::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.dropdown::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Background color of the scrollbar track */
+}
+
+.dropdown::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scrollbar thumb */
+  border-radius: 4px; /* Rounding of the scrollbar thumb */
+  border: 2px solid #f0f0f0; /* Border around the scrollbar thumb */
+}
+
+/* Dropdown item styling */
+.dropdown-item {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Style for the keyword container */
+.keyword-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+  gap: 10px;
+}
+
+.keyword-container input[type="text"] {
+  flex: 1 1; 
+  height: 40px;
+  width: 300px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  padding: 10px;
+}
+
+.tag-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0px 10px 10px 10px;
+  border-bottom: solid 1px lightgrey;
+}
+
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  background-color: #e0e0e0;
+  border-radius: 20px;
+  padding: 10px 15px;
+  margin: 5px;
+  font-size: 14px;
+}
+
+.tag-pill button {
+  margin-left: 8px; /* Space between keyword and button */
+  background: none;
+  border: none;
+  color: #777;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+}
+
+.tag-pill button:hover {
+  color: #ff5c5c; /* Change color on hover to indicate it's clickable */
+}
+
+.tag-pill button:focus {
+  outline: none; /* Remove focus outline */
+}
+
+.tag-pill button::after {
+  content: '✖'; /* Unicode for 'X' */
+  display: inline-block;
+  font-weight: bold;
+}
+
+
+/* Define styles for the labels */
+.label-style {
+  font-weight: bold;  /* Make the text bold */
+  color: #333;        /* Set a dark gray color */
+  margin-bottom: 10px; /* Add some spacing below */
+  font-size: 16px;    /* Set a font size */
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -242,8 +412,51 @@ tr:nth-child(even) {
   /* Zebra striping for rows */
 }
 
+.action-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.action-button {
+  background-color: white;
+  border: solid 1px lightgray;
+  color: #444;
+  padding: 8px 12px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+  margin-right: 5px;
+}
+
+/* Activated/pressed button state */
+.action-button.active {
+  background-color: #eee; /* Change background for active state */
+  opacity: 0.5;
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.1); /* Add an inset shadow for pressed look */
+}
+
+.actions-column {
+  white-space: nowrap;
+  text-align: center;
+  width: 1%;
+}
+
+.action-button:hover {
+  background-color: #ddd;
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
 .delete-button {
-  padding: 7px 15px;
+  color: #e74c3c; /* Red */
+}
+
+.edit-button {
+  color: #3498db; /* Blue */
+}
+
+.move-button {
+  color: #2ecc71; /* Green */
 }
 
 .add-button {
@@ -290,49 +503,6 @@ tr:nth-child(even) {
   position: absolute;
   top: 25px;
   right: 20px;
-}
-
-.actions-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin: 0;
-}
-
-.menu-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  background-color: white;
-  color: #002B49;
-  border: solid 1px #002B49;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 0px 15px;
-  margin: 0;
-}
-
-.menu-button:hover {
-  background-color: lightgray;
-}
-
-#navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 70px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background-color: white;
-  color: #002B49;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .hidden {

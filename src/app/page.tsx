@@ -5,6 +5,8 @@ import { JsonForm } from '@/components/JsonForm'
 import { RelationshipMap } from '@/components/RelationshipMap'
 import { DialogAnalyzer } from '@/components/DialogAnalyzer'
 import { UtteranceAnalyzer } from '@/components/UtteranceAnalyzer'
+import { Navbar } from '@/components/Navbar'
+import * as XLSX from 'xlsx';  // Import the xlsx library
 
 interface fieldConfig {
   fieldName: string;
@@ -15,10 +17,14 @@ interface fieldConfig {
 const Home: NextPage = () => {
   const [activeTab, setActiveTab] = useState<string>('utterances');
   const [jsonArray, setJsonArray] = useState<any[]>([]);
-
   const [utteranceJsonArray, setUtteranceJsonArray] = useState<any[]>([]);
   const [dialogJsonArray, setDialogJsonArray] = useState<any[]>([]);
   const [serviceJsonArray, setServiceJsonArray] = useState<any[]>([]);
+  const [isFileMenuOpen, setFileMenuOpen] = useState(false);
+
+  const toggleFileMenu = () => {
+    setFileMenuOpen(!isFileMenuOpen);
+  };
 
   const utteranceConfig: fieldConfig[] = [
     { fieldName: 'utterance', label: 'Utterance', type: 'string' },
@@ -53,18 +59,15 @@ const Home: NextPage = () => {
   };
 
   const handleSaveJson = () => {
-    // Combine all arrays into one object with separate keys for each category
     const combinedData = {
       utterances: utteranceJsonArray,
       dialogs: dialogJsonArray,
       services: serviceJsonArray,
     };
 
-    // Create a blob from the combined data
     const blob = new Blob([JSON.stringify(combinedData, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
 
-    // Create a temporary anchor tag to initiate download
     const a = document.createElement('a');
     a.href = url;
     a.download = 'data.json';
@@ -82,19 +85,72 @@ const Home: NextPage = () => {
 
       fileReader.onload = (e) => {
         const content = e.target?.result;
-        try {
-          const data = content ? JSON.parse(content.toString()) : null;
-          if (data && typeof data === 'object') {
-            const utterances = data.utterances || [];
-            const dialogs = data.dialogs || [];
-            const services = data.services || [];
+        if (file.type === 'application/json') {
+          try {
+            const data = content ? JSON.parse(content.toString()) : null;
+            if (data && typeof data === 'object') {
+              const utterances = data.utterances || [];
+              const dialogs = data.dialogs || [];
+              const services = data.services || [];
 
-            setUtteranceJsonArray(utterances);
-            setDialogJsonArray(dialogs);
-            setServiceJsonArray(services);
+              setUtteranceJsonArray(utterances);
+              setDialogJsonArray(dialogs);
+              setServiceJsonArray(services);
+            }
+          } catch (error) {
+            console.error('Error parsing JSON file:', error);
           }
-        } catch (error) {
-          console.error('Error parsing JSON file:', error);
+        } else if (
+          file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
+          file.type === 'application/vnd.ms-excel'
+        ) {
+          // Handle XLSX file
+          const data = new Uint8Array(e.target?.result as ArrayBuffer);
+          const workbook = XLSX.read(data, { type: 'array' });
+
+          const firstSheetName = workbook.SheetNames[0];
+          const worksheet = workbook.Sheets[firstSheetName];
+
+          const jsonData = XLSX.utils.sheet_to_json(worksheet);
+
+          const utterances: any[] = [];
+          const dialogs: any[] = [];
+          const services: any[] = [];
+
+          jsonData.forEach((row: any) => {
+            // Extract data from columns and fill respective arrays
+            if (row.Utterance) {
+              utterances.push({
+                utterance: row.Utterance,
+                dialogKey: row.MlIntentName || ''
+              });
+            }
+
+            if (row.MlIntentName && !dialogs.some(dialog => dialog.dialogKey === row.MlIntentName)) {
+              dialogs.push({
+                dialogKey: row.MlIntentName,
+                description: '', // You can add logic to fill this if needed
+                serviceKey: row.MlDomainName || ''
+              });
+            }
+
+            if (row.MlDomainName && !services.some(service => service.name === row.MlDomainName)) {
+              services.push({
+                name: row.MlDomainName,
+                description: '', // You can add logic to fill this if needed
+                isTransactional: false,
+                isAnalysisNeeded: false,
+                isInformational: false,
+                isAuthRequired: false,
+                isAPICallNeeded: false,
+                altService: ''
+              });
+            }
+          });
+
+          setUtteranceJsonArray(utterances);
+          setDialogJsonArray(dialogs);
+          setServiceJsonArray(services);
         }
       };
 
@@ -102,12 +158,15 @@ const Home: NextPage = () => {
         console.error('Error reading file:', error);
       };
 
-      fileReader.readAsText(file);
+      if (file.type === 'application/json') {
+        fileReader.readAsText(file);
+      } else {
+        fileReader.readAsArrayBuffer(file);
+      }
     }
   };
 
   const handleLoadDefaultData = () => {
-
     fetch('data.json')
       .then(response => {
         if (!response.ok) {
@@ -130,7 +189,6 @@ const Home: NextPage = () => {
   };
 
   useEffect(() => {
-    // This function updates the jsonArray depending on the active tab
     const updateJsonArrayFromLocalStorage = () => {
       switch (activeTab) {
         case 'utterances':
@@ -147,14 +205,9 @@ const Home: NextPage = () => {
       }
     };
 
-    // Call the function to update the jsonArray when the component mounts
     updateJsonArrayFromLocalStorage();
-
-    // Also set up a listener for when the activeTab changes
-    // so that the jsonArray gets updated accordingly
     window.addEventListener('storage', updateJsonArrayFromLocalStorage);
 
-    // Clean up the event listener when the component unmounts
     return () => {
       window.removeEventListener('storage', updateJsonArrayFromLocalStorage);
     };
@@ -162,23 +215,18 @@ const Home: NextPage = () => {
 
   return (
     <main>
-      <div id='navbar'>
-        <h2>Chatbot Creator Tool</h2>
-        <div className='actions-container'>
-          <button id="saveJsonBtn" className='menu-button' onClick={handleSaveJson}>Save JSON File</button>
-          <div id="uploadContainer" className='menu-button' >
-            <input type="file" onChange={handleUploadJson} />
-          </div>
-          <button id="loadDefaultBtn" className='menu-button' onClick={handleLoadDefaultData}>Load Default</button>
-        </div>
+      <Navbar saveJson={handleSaveJson} loadExample={handleLoadDefaultData} />
+      <div id="uploadContainer" className='menu-button'>
+        <input type="file" accept=".json, .xlsx, .xls" onChange={handleUploadJson} />
       </div>
+
       <div className="tab">
         <button className={`tablinks ${activeTab === 'utterances' ? 'active' : ''}`} onClick={() => openTab('utterances')}>Utterance Creator</button>
         <button className={`tablinks ${activeTab === 'dialogs' ? 'active' : ''}`} onClick={() => openTab('dialogs')}>Dialog Creator</button>
         <button className={`tablinks ${activeTab === 'services' ? 'active' : ''}`} onClick={() => openTab('services')}>Service Creator</button>
         <button className={`tablinks ${activeTab === 'relationshipmap' ? 'active' : ''}`} onClick={() => openTab('relationshipmap')}>Relationship Map</button>
         <button className={`tablinks ${activeTab === 'dialogAnalysis' ? 'active' : ''}`} onClick={() => openTab('dialogAnalysis')}>Dialog Analysis</button>
-        <button className={`tablinks ${activeTab === 'utteranceAnalysis' ? 'active' : ''}`} onClick={() => openTab('utteranceAnalysis')}>Explode Utterance</button>
+        <button className={`tablinks ${activeTab === 'utteranceAnalysis' ? 'active' : ''}`} onClick={() => openTab('utteranceAnalysis')}>Utterance Analysis</button>
       </div>
 
       <div className={activeTab === 'utterances' ? '' : 'hidden'} >
@@ -205,8 +253,6 @@ const Home: NextPage = () => {
         <UtteranceAnalyzer
           utterances={utteranceJsonArray}
           dialogs={dialogJsonArray}
-          services={serviceJsonArray}
-          setUtterances={setUtteranceJsonArray} // Asegúrate de pasar esta función
         />
       </div>
 
