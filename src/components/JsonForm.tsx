@@ -148,7 +148,7 @@ export const JsonForm: React.FC<JsonFormProps> = ({
       <div className='edit-tools-container'>
         <button id="addToJsonBtn" className='add-button' onClick={addToJson}>Add to List</button>
       </div>
-      <JsonDisplay jsonArray={jsonArray} fieldConfig={fieldConfig} onDeleteItem={openDeleteConfirmation} />
+      <JsonDisplay jsonArray={jsonArray} fieldConfig={fieldConfig} onDeleteItem={openDeleteConfirmation} parentName=''/>
       <ConfirmationModal
         isOpen={isModalOpen}
         onConfirm={confirmDelete}

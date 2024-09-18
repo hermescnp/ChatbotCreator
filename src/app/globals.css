@@ -10,8 +10,8 @@ body {
   padding: 20px;
 }
 
-div {
-  margin-bottom: 10px;
+p {
+  font-size: 14px;
 }
 
 .diagram-container {
@@ -48,7 +48,7 @@ div {
   cursor: pointer;
   padding: 14px 16px;
   transition: 0.3s;
-  font-size: 17px;
+  font-size: 14px;
   color: black;
 }
 
@@ -81,7 +81,16 @@ input[type="text"] {
   height: 40px;
   border-radius: 4px;
   border: 1px solid #ddd;
-  font-size: 16px;
+  font-size: 14px;
+  padding: 10px;
+}
+
+select {
+  width: 100%;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 14px;
   padding: 10px;
 }
 
@@ -101,8 +110,7 @@ input[type="checkbox"] {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-bottom: solid 1px lightgrey;
-  padding: 10px 10px 20px 10px;
+  padding: 10px 10px 10px 10px;
   gap: 15px;
 }
 
@@ -122,7 +130,7 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 button:hover {
@@ -132,6 +140,181 @@ button:hover {
 
 #jsonDisplay {
   margin-top: 20px;
+}
+
+/* Light version of the navigation buttons */
+.nav-button {
+  background-color: #f1f1f1; /* Light background color */
+  color: #002B49; /* Primary color for text to maintain brand consistency */
+  border: 1px solid #ccc; /* Light border for the buttons */
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 8px 12px; /* Compact padding */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+}
+
+.nav-button:hover {
+  background-color: #ddd; /* Slightly darker shade for hover effect */
+  color: black; /* Darker text color on hover for contrast */
+}
+
+.nav-button:disabled {
+  background-color: #e6e6e6; /* Light gray for disabled state */
+  color: #999; /* Lighter text color for disabled state */
+  cursor: not-allowed; /* Indicate non-interactable state */
+}
+
+/* Light style for the "Add Key Word" button */
+.light-button {
+  background-color: #f1f1f1; /* Light background color */
+  color: #002B49; /* Primary color for text */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 10px 20px; /* Padding for the light button */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transitions for hover */
+}
+
+.light-button:hover {
+  background-color: #ddd; /* Slightly darker shade for hover effect */
+  color: black; /* Darker text color on hover */
+}
+
+/* Primary style for the "Analyze" button */
+.primary-button {
+  background-color: #002B49; /* Darker primary color */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 10px 20px; 
+  transition: background-color 0.3s; /* Smooth transition for hover */
+}
+
+.primary-button:hover {
+  background-color: black; /* A darker shade for hover effect */
+}
+
+/* Container to wrap the input and dropdown */
+.dropdown-container {
+  position: relative; /* This makes the dropdown absolute position relative to this container */
+  width: 100%; /* Ensure it matches the parent width */
+}
+
+/* Dropdown styling */
+.dropdown {
+  position: absolute; /* Absolute position relative to .dropdown-container */
+  top: 100%; /* Position below the input field */
+  left: 0;
+  right: 0; /* Ensure the dropdown width matches the input field */
+  max-height: 300px;
+  overflow-y: scroll; /* Always show scrollbar */
+  background-color: white;
+  border: 1px solid #ccc;
+  z-index: 1000;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  scrollbar-width: thin; /* Firefox - shows a thin scrollbar */
+  scrollbar-color: #888 #f0f0f0; /* Firefox - custom scrollbar color */
+}
+
+/* Webkit-based browsers (Chrome, Safari) scrollbar styling */
+.dropdown::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.dropdown::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Background color of the scrollbar track */
+}
+
+.dropdown::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scrollbar thumb */
+  border-radius: 4px; /* Rounding of the scrollbar thumb */
+  border: 2px solid #f0f0f0; /* Border around the scrollbar thumb */
+}
+
+/* Dropdown item styling */
+.dropdown-item {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Style for the keyword container */
+.keyword-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+  gap: 10px;
+}
+
+.keyword-container input[type="text"] {
+  flex: 1; 
+  height: 40px;
+  width: 300px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  padding: 10px;
+}
+
+.tag-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0px 10px 10px 10px;
+  border-bottom: solid 1px lightgrey;
+}
+
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  background-color: #e0e0e0;
+  border-radius: 20px;
+  padding: 10px 15px;
+  margin: 5px;
+  font-size: 14px;
+}
+
+.tag-pill button {
+  margin-left: 8px; /* Space between keyword and button */
+  background: none;
+  border: none;
+  color: #777;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+}
+
+.tag-pill button:hover {
+  color: #ff5c5c; /* Change color on hover to indicate it's clickable */
+}
+
+.tag-pill button:focus {
+  outline: none; /* Remove focus outline */
+}
+
+.tag-pill button::after {
+  content: '✖'; /* Unicode for 'X' */
+  display: inline-block;
+  font-weight: bold;
+}
+
+
+/* Define styles for the labels */
+.label-style {
+  font-weight: bold;  /* Make the text bold */
+  color: #333;        /* Set a dark gray color */
+  margin-bottom: 10px; /* Add some spacing below */
+  font-size: 14px;    /* Set a font size */
 }
 
 table {
@@ -161,12 +344,55 @@ tr:nth-child(even) {
   /* Zebra striping for rows */
 }
 
+.action-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.action-button {
+  background-color: white;
+  border: solid 1px lightgray;
+  color: #444;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+  margin-right: 5px;
+}
+
+/* Activated/pressed button state */
+.action-button.active {
+  background-color: #eee; /* Change background for active state */
+  opacity: 0.5;
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.1); /* Add an inset shadow for pressed look */
+}
+
+.actions-column {
+  white-space: nowrap;
+  text-align: center;
+  width: 1%;
+}
+
+.action-button:hover {
+  background-color: #ddd;
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
 .delete-button {
-  padding: 7px 15px;
+  color: #e74c3c; /* Red */
+}
+
+.edit-button {
+  color: #3498db; /* Blue */
+}
+
+.move-button {
+  color: #2ecc71; /* Green */
 }
 
 .add-button {
-  font-size: 20px;
+  font-size: 14px;
   padding: 15px 25px;
 }
 
@@ -211,49 +437,6 @@ tr:nth-child(even) {
   right: 20px;
 }
 
-.actions-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin: 0;
-}
-
-.menu-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  background-color: white;
-  color: #002B49;
-  border: solid 1px #002B49;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 0px 15px;
-  margin: 0;
-}
-
-.menu-button:hover {
-  background-color: lightgray;
-}
-
-#navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 70px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background-color: white;
-  color: #002B49;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
 .hidden {
   display: none;
   pointer-events: none;
@@ -264,31 +447,3 @@ tr:nth-child(even) {
   from {top: -300px; opacity: 0}
   to {top: 0; opacity: 1}
 }
-
-/* The buttons */
-.modal-footer button {
-  padding: 10px 20px;
-  margin: 10px 5px;
-  border: none;
-  cursor: pointer;
-}
-
-.modal-footer button:hover {
-  opacity: 0.8;
-}
-
-/* The close button */
-.close-button {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close-button:hover,
-.close-button:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
