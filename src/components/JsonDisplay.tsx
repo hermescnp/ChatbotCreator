@@ -22,11 +22,11 @@ interface ToDoItem {
 interface JsonDisplayProps {
   jsonArray: JsonItem[];
   fieldConfig: FieldConfig[];
-  onDeleteItem?: (index: number, dialogKey: string) => void;
-  onEditItem?: (index: number, dialogKey: string) => void;
-  onMoveItem?: (index: number, dialogKey: string) => void;
+  onDeleteItem?: (index: number, dialogKey: string) => void | null;
+  onEditItem?: (index: number, dialogKey: string) => void | null;
+  onMoveItem?: (index: number, dialogKey: string) => void | null;
   parentName: string;
-  toDoList: { [key: string]: ToDoItem };
+  toDoList?: { [key: string]: ToDoItem } | null;
 }
 
 const getColorForPercentage = (percentage: number): string => {
