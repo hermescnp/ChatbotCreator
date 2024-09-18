@@ -7,9 +7,12 @@ import { Utterance, ToDoItem } from './Types'
 interface DialogAnalyzerProps {
   utterances: Utterance[];
   dialogs: any[];
+  toDoList: { [key: string]: ToDoItem };
+  setToDoList: React.Dispatch<React.SetStateAction<{ [key: string]: ToDoItem }>>;
 }
 
-export const UtteranceAnalyzer: React.FC<DialogAnalyzerProps> = ({ utterances, dialogs }) => {
+
+export const UtteranceAnalyzer: React.FC<DialogAnalyzerProps> = ({ utterances, dialogs, toDoList, setToDoList }) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedDialog, setSelectedDialog] = useState<string>('');
   const [newUtteranceText, setNewKeyWordText] = useState<string>('');
@@ -29,9 +32,6 @@ export const UtteranceAnalyzer: React.FC<DialogAnalyzerProps> = ({ utterances, d
   const [searchInput, setSearchInput] = useState<string>(''); // State for search input
   const [showDropdown, setShowDropdown] = useState<boolean>(false); // State to control dropdown visibility
   const dropdownRef = useRef<HTMLDivElement>(null); // Ref for dropdown container
-
-  // State for the to-do list
-  const [toDoList, setToDoList] = useState<{ [key: string]: ToDoItem }>({}); // Store utterances by key
 
   const [transformedUtterances, setTransformedUtterances] = useState<Utterance[]>([]); // State for utterances with status
 

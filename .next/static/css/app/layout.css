@@ -82,6 +82,10 @@ body {
   padding: 20px;
 }
 
+p {
+  font-size: 14px;
+}
+
 .diagram-container {
   position: fixed;
   width: 100%;
@@ -116,7 +120,7 @@ body {
   cursor: pointer;
   padding: 14px 16px;
   transition: 0.3s;
-  font-size: 17px;
+  font-size: 14px;
   color: black;
 }
 
@@ -149,7 +153,7 @@ input[type="text"] {
   height: 40px;
   border-radius: 4px;
   border: 1px solid #ddd;
-  font-size: 16px;
+  font-size: 14px;
   padding: 10px;
 }
 
@@ -158,7 +162,7 @@ select {
   height: 40px;
   border-radius: 4px;
   border: 1px solid #ddd;
-  font-size: 16px;
+  font-size: 14px;
   padding: 10px;
 }
 
@@ -198,7 +202,7 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 button:hover {
@@ -217,7 +221,7 @@ button:hover {
   border: 1px solid #ccc; /* Light border for the buttons */
   border-radius: 4px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   padding: 8px 12px; /* Compact padding */
   transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
 }
@@ -240,7 +244,7 @@ button:hover {
   border: 1px solid #ccc; /* Light border */
   border-radius: 4px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   padding: 10px 20px; /* Padding for the light button */
   transition: background-color 0.3s, color 0.3s; /* Smooth transitions for hover */
 }
@@ -257,7 +261,7 @@ button:hover {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   padding: 10px 20px; 
   transition: background-color 0.3s; /* Smooth transition for hover */
 }
@@ -330,7 +334,7 @@ button:hover {
   width: 300px;
   border-radius: 4px;
   border: 1px solid #ddd;
-  font-size: 16px;
+  font-size: 14px;
   padding: 10px;
 }
 
@@ -382,7 +386,7 @@ button:hover {
   font-weight: bold;  /* Make the text bold */
   color: #333;        /* Set a dark gray color */
   margin-bottom: 10px; /* Add some spacing below */
-  font-size: 16px;    /* Set a font size */
+  font-size: 14px;    /* Set a font size */
 }
 
 table {
@@ -422,7 +426,7 @@ tr:nth-child(even) {
   border: solid 1px lightgray;
   color: #444;
   padding: 8px 12px;
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
@@ -460,7 +464,7 @@ tr:nth-child(even) {
 }
 
 .add-button {
-  font-size: 20px;
+  font-size: 14px;
   padding: 15px 25px;
 }
 
@@ -515,32 +519,4 @@ tr:nth-child(even) {
   from {top: -300px; opacity: 0}
   to {top: 0; opacity: 1}
 }
-
-/* The buttons */
-.modal-footer button {
-  padding: 10px 20px;
-  margin: 10px 5px;
-  border: none;
-  cursor: pointer;
-}
-
-.modal-footer button:hover {
-  opacity: 0.8;
-}
-
-/* The close button */
-.close-button {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close-button:hover,
-.close-button:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
 

@@ -7,6 +7,7 @@ import { DialogAnalyzer } from '@/components/DialogAnalyzer'
 import { UtteranceAnalyzer } from '@/components/UtteranceAnalyzer'
 import { Navbar } from '@/components/Navbar'
 import * as XLSX from 'xlsx';  // Import the xlsx library
+import { Utterance, ToDoItem } from '../components/Types'
 
 interface fieldConfig {
   fieldName: string;
@@ -20,11 +21,8 @@ const Home: NextPage = () => {
   const [utteranceJsonArray, setUtteranceJsonArray] = useState<any[]>([]);
   const [dialogJsonArray, setDialogJsonArray] = useState<any[]>([]);
   const [serviceJsonArray, setServiceJsonArray] = useState<any[]>([]);
-  const [isFileMenuOpen, setFileMenuOpen] = useState(false);
-
-  const toggleFileMenu = () => {
-    setFileMenuOpen(!isFileMenuOpen);
-  };
+  const [toDoList, setToDoList] = useState<{ [key: string]: ToDoItem }>({}); // Store utterances by key
+  const [originalXlsxData, setOriginalXlsxData] = useState<any[]>([]);
 
   const utteranceConfig: fieldConfig[] = [
     { fieldName: 'utterance', label: 'Utterance', type: 'string' },
@@ -77,6 +75,19 @@ const Home: NextPage = () => {
     URL.revokeObjectURL(url);
   };
 
+  const handleExportToDoList = () => {
+    const blob = new Blob([JSON.stringify(toDoList, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'toDoList.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
   const handleUploadJson = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
 
@@ -112,6 +123,9 @@ const Home: NextPage = () => {
           const worksheet = workbook.Sheets[firstSheetName];
 
           const jsonData = XLSX.utils.sheet_to_json(worksheet);
+
+          // Store the original data for later use
+          setOriginalXlsxData(jsonData);
 
           const utterances: any[] = [];
           const dialogs: any[] = [];
@@ -166,6 +180,46 @@ const Home: NextPage = () => {
     }
   };
 
+  const handleExportModifiedXlsx = () => {
+    // Create a copy of the original data
+    let modifiedData = [...originalXlsxData];
+
+    // Apply the toDoList actions
+    Object.values(toDoList).forEach((item) => {
+      const index = modifiedData.findIndex(u => u.Utterance === item.utterance);
+      if (index !== -1) {
+        if (item.action === 'remove') {
+          // Remove the utterance
+          modifiedData.splice(index, 1);
+        } else if (item.action === 'edit') {
+          // Update the utterance text
+          modifiedData[index].Utterance = item.editedText || modifiedData[index].Utterance;
+        } else if (item.action === 'move') {
+          // Update the dialogKey (MlIntentName)
+          modifiedData[index].MlIntentName = item.newDialogKey || modifiedData[index].MlIntentName;
+        }
+      }
+    });
+
+    // Create a worksheet and workbook
+    const worksheet = XLSX.utils.json_to_sheet(modifiedData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+
+    // Write the workbook and trigger the download
+    const wbout = XLSX.write(workbook, { type: 'array', bookType: 'xlsx' });
+    const blob = new Blob([wbout], { type: 'application/octet-stream' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'modified_data.xlsx';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
   const handleLoadDefaultData = () => {
     fetch('data.json')
       .then(response => {
@@ -215,7 +269,12 @@ const Home: NextPage = () => {
 
   return (
     <main>
-      <Navbar saveJson={handleSaveJson} loadExample={handleLoadDefaultData} />
+      <Navbar 
+        saveJson={handleSaveJson}
+        loadExample={handleLoadDefaultData} 
+        exportToDoList={handleExportToDoList}
+        exportModifiedXlsx={handleExportModifiedXlsx}
+      />
       <div id="uploadContainer" className='menu-button'>
         <input type="file" accept=".json, .xlsx, .xls" onChange={handleUploadJson} />
       </div>
@@ -253,6 +312,8 @@ const Home: NextPage = () => {
         <UtteranceAnalyzer
           utterances={utteranceJsonArray}
           dialogs={dialogJsonArray}
+          toDoList={toDoList}
+          setToDoList={setToDoList}
         />
       </div>
 
