@@ -9,19 +9,15 @@ interface DialogAnalyzerProps {
   dialogs: any[];
   toDoList: { [key: string]: ToDoItem };
   setToDoList: React.Dispatch<React.SetStateAction<{ [key: string]: ToDoItem }>>;
+  keywordsByDialog: { [key: string]: { keywords: string[], statuses: { [utterance: string]: string } } };
+  setKeywordsByDialog: React.Dispatch<React.SetStateAction<{ [key: string]: { keywords: string[], statuses: { [utterance: string]: string } } }>>;
 }
 
 
-export const UtteranceAnalyzer: React.FC<DialogAnalyzerProps> = ({ utterances, dialogs, toDoList, setToDoList }) => {
+export const UtteranceAnalyzer: React.FC<DialogAnalyzerProps> = ({ utterances, dialogs, toDoList, setToDoList, keywordsByDialog, setKeywordsByDialog }) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedDialog, setSelectedDialog] = useState<string>('');
   const [newUtteranceText, setNewKeyWordText] = useState<string>('');
-  const [keywordsByDialog, setKeywordsByDialog] = useState<{
-    [key: string]: {
-      keywords: string[],
-      statuses: { [utterance: string]: string }
-    }
-  }>({});
   const [modalData, setModalData] = useState<{ dialogName: string; keywords: string[] }>({
     dialogName: '',
     keywords: [],
@@ -209,40 +205,80 @@ export const UtteranceAnalyzer: React.FC<DialogAnalyzerProps> = ({ utterances, d
 
   const handleAddToDo = (
     index: number,
-    action: 'remove' | 'edit' | 'move',
+    action: 'remove' | 'edit' | 'move' | 'flag',
     dialogKey: string,
     newDialogKey?: string,
-    editedText?: string
+    editedText?: string,
+    flaggedFrom?: string // Added optional parameter
   ) => {
-    // Find utterance based on the provided dialogKey
-    const utterancesForDialog = utterances.filter(utterance => utterance.dialogKey === dialogKey);
+    const utterancesForDialog = utterances.filter(
+      (utterance) => utterance.dialogKey === dialogKey
+    );
     const utteranceToAdd = utterancesForDialog[index]; // Get the utterance from the selected dialog
-
+  
     if (!utteranceToAdd || !utteranceToAdd.utterance) {
       console.error('Invalid utterance at index', index);
       return;
     }
-
+  
+    // Use flaggedFrom if provided, else use dialogKey
+    const flagSource = flaggedFrom || dialogKey;
+  
     setToDoList((prevToDoList: any) => {
       const existingItem = prevToDoList[utteranceToAdd.utterance];
-
-      if (existingItem && existingItem.action === action) {
-        const { [utteranceToAdd.utterance]: _, ...remainingItems } = prevToDoList;
-        return remainingItems; // Remove the item if it exists and has the same action
+  
+      if (action === 'flag') {
+        const flaggedFromArray = existingItem?.flaggedFrom || [];
+        const isAlreadyFlagged = flaggedFromArray.includes(flagSource);
+  
+        let updatedFlaggedFrom;
+  
+        if (isAlreadyFlagged) {
+          // Toggle off the flag (remove the flagSource from flaggedFrom)
+          updatedFlaggedFrom = flaggedFromArray.filter(
+            (key: any) => key !== flagSource
+          );
+        } else {
+          // Toggle on the flag (add the flagSource to flaggedFrom)
+          updatedFlaggedFrom = [...flaggedFromArray, flagSource];
+        }
+  
+        // If no flags remain, remove the item from the toDoList
+        if (updatedFlaggedFrom.length === 0) {
+          const { [utteranceToAdd.utterance]: _, ...remainingItems } = prevToDoList;
+          return remainingItems;
+        } else {
+          return {
+            ...prevToDoList,
+            [utteranceToAdd.utterance]: {
+              ...existingItem,
+              utterance: utteranceToAdd.utterance, // Ensure this is the utterance text
+              action: 'flag', // Keep action as 'flag'
+              flaggedFrom: updatedFlaggedFrom, // Update the flaggedFrom array
+            },
+          };
+        }
+      } else {
+        // Handle other actions (remove, edit, move)
+        if (existingItem && existingItem.action === action) {
+          const { [utteranceToAdd.utterance]: _, ...remainingItems } = prevToDoList;
+          return remainingItems; // Remove the item if it exists and has the same action
+        }
+  
+        return {
+          ...prevToDoList,
+          [utteranceToAdd.utterance]: {
+            ...existingItem,
+            utterance: utteranceToAdd.utterance, // Ensure this is the utterance text
+            action: action,
+            newDialogKey: newDialogKey || null,
+            editedText: editedText || null,
+            flaggedFrom: existingItem?.flaggedFrom || [],
+          },
+        };
       }
-
-      // Otherwise, add/update the item in the to-do list
-      return {
-        ...prevToDoList,
-        [utteranceToAdd.utterance]: {
-          utterance: utteranceToAdd.utterance,
-          action: action,
-          newDialogKey: newDialogKey || null,
-          editedText: editedText || null,
-        },
-      };
     });
-  };
+  };  
 
   const handleDeleteItem = (index: number, dialogKey: string) => {
     handleAddToDo(index, 'remove', dialogKey);
@@ -260,6 +296,14 @@ export const UtteranceAnalyzer: React.FC<DialogAnalyzerProps> = ({ utterances, d
     if (newDialogKey !== null) {
       handleAddToDo(index, 'move', dialogKey, newDialogKey);
     }
+  };
+
+  const handleFlagItem = (
+    index: number,
+    dialogKey: string,
+    flaggedFrom?: string // Added optional parameter
+  ) => {
+    handleAddToDo(index, 'flag', dialogKey, undefined, undefined, flaggedFrom);
   };
 
   return (
@@ -333,7 +377,8 @@ export const UtteranceAnalyzer: React.FC<DialogAnalyzerProps> = ({ utterances, d
         toDoList={toDoList}
         onDeleteItem={handleDeleteItem}
         onEditItem={handleEditItem}
-        onMoveItem={handleMoveItem} />
+        onMoveItem={handleMoveItem}
+        onFlagItem={handleFlagItem} />
 
       <div className="tag-bar">
         {currentKeywords.map((keyword, index) => (
@@ -353,6 +398,8 @@ export const UtteranceAnalyzer: React.FC<DialogAnalyzerProps> = ({ utterances, d
         onDeleteItem={(index) => handleDeleteItem(index, selectedDialog)}
         onEditItem={(index) => handleEditItem(index, selectedDialog)}
         onMoveItem={(index) => handleMoveItem(index, selectedDialog)}
+        onFlagItem={(index) => handleFlagItem(index, selectedDialog)}
+        dialogKey={selectedDialog}
       />
     </>
   );
