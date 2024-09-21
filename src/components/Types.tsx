@@ -6,9 +6,11 @@ export interface Utterance {
     objectType: string;
   }
 
-export interface ToDoItem {
+  export interface ToDoItem {
     utterance: Utterance;
-    action: 'remove' | 'edit' | 'move' | null;
+    action: 'remove' | 'edit' | 'move' | 'flag' | null;
     newDialogKey?: string; // For 'move' action
     editedText?: string; // For 'edit' action
+    flaggedFrom?: string[]; // For 'flag' action
   }
+  

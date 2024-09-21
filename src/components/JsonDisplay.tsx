@@ -1,6 +1,7 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faEdit, faArrowsAlt } from '@fortawesome/free-solid-svg-icons';
+import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt, faEdit, faArrowsAlt, faFlag } from '@fortawesome/free-solid-svg-icons'
+import { ToDoItem } from './Types'
 
 interface JsonItem {
   [key: string]: any;
@@ -12,34 +13,26 @@ interface FieldConfig {
   type: 'string' | 'boolean';
 }
 
-interface ToDoItem {
-  utterance: JsonItem;
-  action: 'remove' | 'edit' | 'move' | null;
-  newDialogKey?: string;
-  editedText?: string;
-}
-
 interface JsonDisplayProps {
   jsonArray: JsonItem[];
   fieldConfig: FieldConfig[];
   onDeleteItem?: (index: number, dialogKey: string) => void | null;
   onEditItem?: (index: number, dialogKey: string) => void | null;
   onMoveItem?: (index: number, dialogKey: string) => void | null;
+  onFlagItem?: (index: number, dialogKey: string) => void | null;
+  dialogKey?: string;
   parentName: string;
   toDoList?: { [key: string]: ToDoItem } | null;
 }
 
 const getColorForPercentage = (percentage: number): string => {
   if (percentage === 0) {
-    // Red for 0%
     return 'rgb(255, 0, 0)';
   }
 
-  // At 1%, yellow (255, 255, 0)
-  // At 100%, green (0, 255, 0)
-  const red = Math.round(155 - ((percentage * 155) / 100)); // Red decreases from 255 (yellow) to 0 (green)
-  const green = 155; // Green stays constant at 255
-  const blue = 0; // No blue component
+  const red = Math.round(155 - ((percentage * 155) / 100));
+  const green = 155;
+  const blue = 0;
 
   return `rgb(${red}, ${green}, ${blue})`;
 };
@@ -50,61 +43,87 @@ export const JsonDisplay: React.FC<JsonDisplayProps> = ({
   onDeleteItem,
   onEditItem,
   onMoveItem,
+  onFlagItem,
   parentName,
   toDoList,
 }) => {
-  // Helper function to apply different styles and handle actions
-  const getItemStyle = (utterance: string) => {
+  const isFlagged = (utterance: string, dialogKey: string): boolean => {
     const toDoItem = toDoList?.[utterance];
+    return toDoItem?.flaggedFrom?.includes(dialogKey) || false;
+  };
+
+  const getItemStyle = (utterance: string, dialogKey: string) => {
+    const toDoItem = toDoList?.[utterance];
+
     if (toDoItem?.action === 'remove') {
       return { textDecoration: 'line-through', color: '#bbb' };
     } else if (toDoItem?.action === 'edit') {
       return { color: '#3498db' };
     } else if (toDoItem?.action === 'move') {
       return { color: '#2ecc71' };
+    } else if (isFlagged(utterance, dialogKey)) {
+      // Prioritize flag styling, but ensure other actions take precedence
+      return { backgroundColor: '#fff2cc' };
     }
+
     return {};
   };
 
   const renderActionText = (utterance: string) => {
     const toDoItem = toDoList?.[utterance];
+
     if (toDoItem?.action === 'edit' && toDoItem?.editedText) {
       return (
         <span>
-          {' '}
-          | edited to --&gt; <span style={{ fontWeight: 'bold' }}>{toDoItem.editedText}</span>
+          <span style={{ color: '#3498db' }}>
+            {' '}
+            | edited to --&gt;
+          </span>
+          <span style={{ fontWeight: 'bold', color: 'black' }}>{' ' + toDoItem.editedText}</span>
         </span>
       );
     } else if (toDoItem?.action === 'move' && toDoItem?.newDialogKey) {
       return (
-        <span>
+        <span style={{ color: '#2ecc71' }}>
           {' '}
           | moved to --&gt; <span style={{ fontWeight: 'bold' }}>{toDoItem.newDialogKey}</span>
+        </span>
+      );
+    } else if (toDoItem?.action === 'flag' && toDoItem?.flaggedFrom && toDoItem.flaggedFrom.length > 0) {
+      return (
+        <span style={{ color: 'orange' }}>
+          {' '}
+          | flagged from --&gt;{' '}
+          <span style={{ fontWeight: 'bold' }}>{toDoItem.flaggedFrom.join(', ')}</span>
         </span>
       );
     }
     return null;
   };
 
-  // Helper function to check if the action button should be active
-  const isActive = (utterance: string, action: 'remove' | 'edit' | 'move') => {
+  const isActive = (utterance: string, action: 'remove' | 'edit' | 'move' | 'flag') => {
+    if (action === 'flag') {
+      return isFlagged(utterance, parentName);
+    }
     return toDoList?.[utterance]?.action === action;
   };
 
   const renderCell = (item: JsonItem, fieldName: string, type: 'string' | 'boolean') => {
     const utteranceKey = item['utterance'];
-    const toDoItem = toDoList?.[utteranceKey]; // Get the related to-do item
-    const style = getItemStyle(utteranceKey); // Apply styles based on the utterance
-  
+    const style = getItemStyle(utteranceKey, parentName);
+
     if (type === 'boolean') {
       return item[fieldName] ? 'Yes' : 'No';
     } else if (fieldName === 'status') {
       if (!item[fieldName]) {
-        return <span style={{ color: '#ccc' }}>Pending</span>; // Return "Pending" when no status
+        return <span style={{ color: '#ccc' }}>Pending</span>;
       }
-  
+
+      const toDoItem = toDoList?.[utteranceKey];
       if (toDoItem) {
-        // Check if there's a corresponding action in the toDoList for this item
+        if (toDoItem.flaggedFrom?.includes(parentName)) {
+          return <span style={{ color: 'orange' }}>Flagged</span>;
+        }
         switch (toDoItem.action) {
           case 'edit':
             return <span style={{ color: '#3498db' }}>Edited</span>;
@@ -116,22 +135,21 @@ export const JsonDisplay: React.FC<JsonDisplayProps> = ({
             break;
         }
       }
-      
-      // If no action is applied, render the percentage as usual
+
       const percentage = parseInt(item[fieldName], 10);
       const color = getColorForPercentage(percentage);
-      return <span style={{ color }}>{item[fieldName]}</span>; // Use the percentage color logic
+      return <span style={{ color }}>{item[fieldName]}</span>;
     } else if (fieldName === 'utterance') {
       return (
         <span style={style}>
           {item[fieldName]}
-          {renderActionText(utteranceKey)} {/* Only render the edited or moved text for utterance */}
+          {renderActionText(utteranceKey)}
         </span>
       );
     } else {
-      return <span style={style}>{item[fieldName]}</span>; // For other fields, just render the field value
+      return <span style={style}>{item[fieldName]}</span>;
     }
-  };  
+  };
 
   return (
     <div id="jsonDisplay">
@@ -149,7 +167,9 @@ export const JsonDisplay: React.FC<JsonDisplayProps> = ({
             {fieldConfig.map((field) => (
               <th key={field.fieldName}>{field.label}</th>
             ))}
-            {(onDeleteItem || onEditItem || onMoveItem) && <th className="actions-column">Actions</th>}
+            {(onDeleteItem || onEditItem || onMoveItem || onFlagItem) && (
+              <th className="actions-column">Actions</th>
+            )}
           </tr>
         </thead>
         <tbody>
@@ -169,7 +189,7 @@ export const JsonDisplay: React.FC<JsonDisplayProps> = ({
                       onClick={() => onEditItem(originalIndex, parentName)}
                       title="Edit"
                     >
-                      <FontAwesomeIcon icon={faEdit} /> {/* Edit icon */}
+                      <FontAwesomeIcon icon={faEdit} />
                     </button>
                   )}
                   {onMoveItem && (
@@ -178,18 +198,43 @@ export const JsonDisplay: React.FC<JsonDisplayProps> = ({
                       onClick={() => onMoveItem(originalIndex, parentName)}
                       title="Move"
                     >
-                      <FontAwesomeIcon icon={faArrowsAlt} /> {/* Move icon */}
+                      <FontAwesomeIcon icon={faArrowsAlt} />
                     </button>
                   )}
                   {onDeleteItem && (
                     <button
                       className={`action-button delete-button ${isActive(utteranceKey, 'remove') ? 'active' : ''}`}
-                      onClick={() => onDeleteItem(originalIndex, parentName)}
+                      onClick={() => {
+                        // Trigger remove action and clear the flag if necessary
+                        if (isFlagged(utteranceKey, parentName)) {
+                          // Optionally handle the flag removal logic before calling onDeleteItem
+                          onFlagItem?.(originalIndex, parentName); // Unflag the item first if it's flagged
+                        }
+                        onDeleteItem(originalIndex, parentName);
+                      }}
                       title="Delete"
                     >
-                      <FontAwesomeIcon icon={faTrashAlt} /> {/* Trash icon */}
+                      <FontAwesomeIcon icon={faTrashAlt} />
                     </button>
                   )}
+                  {onFlagItem && (
+                    <button
+                      className={`action-button flag-button ${isFlagged(utteranceKey, parentName) ? 'active' : ''}`}
+                      onClick={() => {
+                        if (isFlagged(utteranceKey, parentName)) {
+                          // Unflag if it's currently flagged
+                          onFlagItem(originalIndex, parentName);
+                        } else if (toDoList?.[utteranceKey]?.action !== 'remove') {
+                          // Only allow flagging if it's not marked for removal
+                          onFlagItem(originalIndex, parentName);
+                        }
+                      }}
+                      title={isFlagged(utteranceKey, parentName) ? 'Unflag' : 'Flag'}
+                    >
+                      <FontAwesomeIcon icon={faFlag} />
+                    </button>
+                  )}
+
                 </td>
               </tr>
             );

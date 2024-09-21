@@ -23,6 +23,12 @@ const Home: NextPage = () => {
   const [serviceJsonArray, setServiceJsonArray] = useState<any[]>([]);
   const [toDoList, setToDoList] = useState<{ [key: string]: ToDoItem }>({}); // Store utterances by key
   const [originalXlsxData, setOriginalXlsxData] = useState<any[]>([]);
+  const [keywordsByDialog, setKeywordsByDialog] = useState<{
+    [key: string]: {
+      keywords: string[],
+      statuses: { [utterance: string]: string }
+    }
+  }>({});
 
   const utteranceConfig: fieldConfig[] = [
     { fieldName: 'utterance', label: 'Utterance', type: 'string' },
@@ -54,6 +60,46 @@ const Home: NextPage = () => {
 
   const handleAddToJson = (newItem: any) => {
     setJsonArray((prevArray: any) => [...prevArray, newItem]);
+  };
+
+  const handleSaveAll = () => {
+    // Create the combined data object
+    const combinedData = {
+      originalXlsxData,
+      keywordsByDialog,
+      toDoList,
+    };
+
+    // Convert the data to a JSON string
+    const jsonData = JSON.stringify(combinedData, null, 2);
+
+    // Prompt the user for a filename
+    const filename = window.prompt('Enter a filename', 'data.cbot');
+
+    if (filename) {
+      // Ensure the filename ends with '.cbot'
+      const fileExtension = '.cbot';
+      const fullFilename = filename.endsWith(fileExtension)
+        ? filename
+        : filename + fileExtension;
+
+      // Create a blob with the JSON data
+      const blob = new Blob([jsonData], { type: 'application/json' });
+
+      // Create an object URL for the blob
+      const url = URL.createObjectURL(blob);
+
+      // Create an anchor element and trigger the download
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fullFilename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+
+      // Revoke the object URL
+      URL.revokeObjectURL(url);
+    }
   };
 
   const handleSaveJson = () => {
@@ -96,86 +142,155 @@ const Home: NextPage = () => {
 
       fileReader.onload = (e) => {
         const content = e.target?.result;
-        if (file.type === 'application/json') {
+
+        if (file.name.endsWith('.cbot') || file.type === 'application/json') {
+          // Handle .cbot or JSON file
           try {
             const data = content ? JSON.parse(content.toString()) : null;
             if (data && typeof data === 'object') {
-              const utterances = data.utterances || [];
-              const dialogs = data.dialogs || [];
-              const services = data.services || [];
+              setOriginalXlsxData(data.originalXlsxData || []);
+              setKeywordsByDialog(data.keywordsByDialog || {});
+              setToDoList(data.toDoList || {});
 
-              setUtteranceJsonArray(utterances);
-              setDialogJsonArray(dialogs);
-              setServiceJsonArray(services);
+              // Process originalXlsxData to update other state variables
+              if (data.originalXlsxData && data.originalXlsxData.length > 0) {
+                const jsonData = data.originalXlsxData;
+
+                const utterances: any[] = [];
+                const dialogs: any[] = [];
+                const services: any[] = [];
+
+                jsonData.forEach((row: any) => {
+                  // Extract data from columns and fill respective arrays
+                  if (row.Utterance) {
+                    utterances.push({
+                      utterance: row.Utterance,
+                      dialogKey: row.MlIntentName || '',
+                    });
+                  }
+
+                  if (
+                    row.MlIntentName &&
+                    !dialogs.some((dialog) => dialog.dialogKey === row.MlIntentName)
+                  ) {
+                    dialogs.push({
+                      dialogKey: row.MlIntentName,
+                      description: '', // You can add logic to fill this if needed
+                      serviceKey: row.MlDomainName || '',
+                    });
+                  }
+
+                  if (
+                    row.MlDomainName &&
+                    !services.some((service) => service.name === row.MlDomainName)
+                  ) {
+                    services.push({
+                      name: row.MlDomainName,
+                      description: '', // You can add logic to fill this if needed
+                      isTransactional: false,
+                      isAnalysisNeeded: false,
+                      isInformational: false,
+                      isAuthRequired: false,
+                      isAPICallNeeded: false,
+                      altService: '',
+                    });
+                  }
+                });
+
+                setUtteranceJsonArray(utterances);
+                setDialogJsonArray(dialogs);
+                setServiceJsonArray(services);
+              }
             }
           } catch (error) {
-            console.error('Error parsing JSON file:', error);
+            console.error('Error parsing .cbot file:', error);
+            alert(
+              'Failed to parse the .cbot file. Please ensure it is correctly formatted.'
+            );
           }
-        } else if (
+        }
+        else if (
           file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
           file.type === 'application/vnd.ms-excel'
         ) {
           // Handle XLSX file
-          const data = new Uint8Array(e.target?.result as ArrayBuffer);
-          const workbook = XLSX.read(data, { type: 'array' });
+          try {
+            const data = new Uint8Array(e.target?.result as ArrayBuffer);
+            const workbook = XLSX.read(data, { type: 'array' });
 
-          const firstSheetName = workbook.SheetNames[0];
-          const worksheet = workbook.Sheets[firstSheetName];
+            const firstSheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[firstSheetName];
 
-          const jsonData = XLSX.utils.sheet_to_json(worksheet);
+            const jsonData = XLSX.utils.sheet_to_json(worksheet);
 
-          // Store the original data for later use
-          setOriginalXlsxData(jsonData);
+            // Store the original data for later use
+            setOriginalXlsxData(jsonData);
 
-          const utterances: any[] = [];
-          const dialogs: any[] = [];
-          const services: any[] = [];
+            const utterances: any[] = [];
+            const dialogs: any[] = [];
+            const services: any[] = [];
 
-          jsonData.forEach((row: any) => {
-            // Extract data from columns and fill respective arrays
-            if (row.Utterance) {
-              utterances.push({
-                utterance: row.Utterance,
-                dialogKey: row.MlIntentName || ''
-              });
-            }
+            jsonData.forEach((row: any) => {
+              // Extract data from columns and fill respective arrays
+              if (row.Utterance) {
+                utterances.push({
+                  utterance: row.Utterance,
+                  dialogKey: row.MlIntentName || ''
+                });
+              }
 
-            if (row.MlIntentName && !dialogs.some(dialog => dialog.dialogKey === row.MlIntentName)) {
-              dialogs.push({
-                dialogKey: row.MlIntentName,
-                description: '', // You can add logic to fill this if needed
-                serviceKey: row.MlDomainName || ''
-              });
-            }
+              if (row.MlIntentName && !dialogs.some(dialog => dialog.dialogKey === row.MlIntentName)) {
+                dialogs.push({
+                  dialogKey: row.MlIntentName,
+                  description: '', // Placeholder for description
+                  serviceKey: row.MlDomainName || ''
+                });
+              }
 
-            if (row.MlDomainName && !services.some(service => service.name === row.MlDomainName)) {
-              services.push({
-                name: row.MlDomainName,
-                description: '', // You can add logic to fill this if needed
-                isTransactional: false,
-                isAnalysisNeeded: false,
-                isInformational: false,
-                isAuthRequired: false,
-                isAPICallNeeded: false,
-                altService: ''
-              });
-            }
-          });
+              if (row.MlDomainName && !services.some(service => service.name === row.MlDomainName)) {
+                services.push({
+                  name: row.MlDomainName,
+                  description: '', // Placeholder for description
+                  isTransactional: false,
+                  isAnalysisNeeded: false,
+                  isInformational: false,
+                  isAuthRequired: false,
+                  isAPICallNeeded: false,
+                  altService: ''
+                });
+              }
+            });
 
-          setUtteranceJsonArray(utterances);
-          setDialogJsonArray(dialogs);
-          setServiceJsonArray(services);
+            // Update state with parsed data
+            setUtteranceJsonArray(utterances);
+            setDialogJsonArray(dialogs);
+            setServiceJsonArray(services);
+          } catch (error) {
+            console.error('Error parsing XLSX file:', error);
+            alert('Failed to parse the XLSX file. Please ensure it is correctly formatted.');
+          }
+        }
+        else {
+          // Unrecognized file type
+          alert('Unsupported file type. Please upload a .cbot or .xlsx file.');
         }
       };
 
       fileReader.onerror = (error) => {
         console.error('Error reading file:', error);
+        alert('Error reading the file.');
       };
 
-      if (file.type === 'application/json') {
+      // Decide how to read the file
+      if (file.name.endsWith('.cbot') || file.type === 'application/json') {
         fileReader.readAsText(file);
-      } else {
+      } else if (
+        file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
+        file.type === 'application/vnd.ms-excel'
+      ) {
         fileReader.readAsArrayBuffer(file);
+      } else {
+        alert('Unsupported file type. Please upload a .cbot or .xlsx file.');
       }
     }
   };
@@ -251,7 +366,7 @@ const Home: NextPage = () => {
         case 'dialogs':
           setJsonArray(dialogJsonArray);
           break;
-        case 'Services':
+        case 'services':
           setJsonArray(serviceJsonArray);
           break;
         default:
@@ -269,14 +384,15 @@ const Home: NextPage = () => {
 
   return (
     <main>
-      <Navbar 
+      <Navbar
         saveJson={handleSaveJson}
-        loadExample={handleLoadDefaultData} 
+        loadExample={handleLoadDefaultData}
         exportToDoList={handleExportToDoList}
         exportModifiedXlsx={handleExportModifiedXlsx}
+        saveAll={handleSaveAll}
       />
       <div id="uploadContainer" className='menu-button'>
-        <input type="file" accept=".json, .xlsx, .xls" onChange={handleUploadJson} />
+        <input type="file" accept=".json, .xlsx, .xls, .cbot" onChange={handleUploadJson} />
       </div>
 
       <div className="tab">
@@ -312,8 +428,11 @@ const Home: NextPage = () => {
         <UtteranceAnalyzer
           utterances={utteranceJsonArray}
           dialogs={dialogJsonArray}
+          services={serviceJsonArray}
           toDoList={toDoList}
           setToDoList={setToDoList}
+          keywordsByDialog={keywordsByDialog}
+          setKeywordsByDialog={setKeywordsByDialog}
         />
       </div>
 

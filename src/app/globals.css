@@ -391,6 +391,10 @@ tr:nth-child(even) {
   color: #2ecc71; /* Green */
 }
 
+.flag-button {
+  color: orange; /* Orange */
+}
+
 .add-button {
   font-size: 14px;
   padding: 15px 25px;

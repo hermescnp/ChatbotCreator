@@ -1,27 +1,31 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { JsonDisplay } from './JsonDisplay'
-import { getUtteranceStatus, getNonSelectedDialogsStatus } from './AnalyzerUtils'
-import AnalysisModal from './AnalysisModal'
-import { Utterance, ToDoItem } from './Types'
+import React, { useState, useRef, useEffect, useMemo } from 'react';
+import { JsonDisplay } from './JsonDisplay';
+import { getUtteranceStatus, getNonSelectedDialogsStatus } from './AnalyzerUtils';
+import AnalysisModal from './AnalysisModal';
+import { Utterance, ToDoItem } from './Types';
 
-interface DialogAnalyzerProps {
+interface UtteranceAnalyzerProps {
   utterances: Utterance[];
   dialogs: any[];
+  services: any[]; // Added services prop
   toDoList: { [key: string]: ToDoItem };
   setToDoList: React.Dispatch<React.SetStateAction<{ [key: string]: ToDoItem }>>;
+  keywordsByDialog: { [key: string]: { keywords: string[], statuses: { [utterance: string]: string } } };
+  setKeywordsByDialog: React.Dispatch<React.SetStateAction<{ [key: string]: { keywords: string[], statuses: { [utterance: string]: string } } }>>;
 }
 
-
-export const UtteranceAnalyzer: React.FC<DialogAnalyzerProps> = ({ utterances, dialogs, toDoList, setToDoList }) => {
+export const UtteranceAnalyzer: React.FC<UtteranceAnalyzerProps> = ({
+  utterances,
+  dialogs,
+  services, // Receive services
+  toDoList,
+  setToDoList,
+  keywordsByDialog,
+  setKeywordsByDialog
+}) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedDialog, setSelectedDialog] = useState<string>('');
   const [newUtteranceText, setNewKeyWordText] = useState<string>('');
-  const [keywordsByDialog, setKeywordsByDialog] = useState<{
-    [key: string]: {
-      keywords: string[],
-      statuses: { [utterance: string]: string }
-    }
-  }>({});
   const [modalData, setModalData] = useState<{ dialogName: string; keywords: string[] }>({
     dialogName: '',
     keywords: [],
@@ -34,29 +38,80 @@ export const UtteranceAnalyzer: React.FC<DialogAnalyzerProps> = ({ utterances, d
   const dropdownRef = useRef<HTMLDivElement>(null); // Ref for dropdown container
 
   const [transformedUtterances, setTransformedUtterances] = useState<Utterance[]>([]); // State for utterances with status
+  const [selectedService, setSelectedService] = useState<string>(''); // Selected service
+
+  // Memoize filteredDialogs for performance
+  const filteredDialogs = useMemo(() => {
+    let filtered = dialogs;
+
+    if (selectedService !== '') {
+      filtered = dialogs.filter(dialog => dialog.serviceKey === selectedService);
+    }
+
+    if (searchInput !== '') {
+      filtered = filtered.filter(dialog =>
+        dialog.dialogKey.toLowerCase().includes(searchInput.toLowerCase())
+      );
+    }
+
+    return filtered;
+  }, [selectedService, searchInput, dialogs]);
+
+  // Automatically select the first service if available
+  useEffect(() => {
+    if (services.length > 0 && selectedService === '') {
+      setSelectedService(services[0].name);
+    }
+  }, [services, selectedService]);
+
+  // Automatically select the first dialog if available and no dialog is selected
+  useEffect(() => {
+    if (filteredDialogs.length > 0 && selectedDialog === '') {
+      handleDialogSelect(filteredDialogs[0].dialogKey);
+    }
+  }, [filteredDialogs, selectedDialog]);
+
+  useEffect(() => {
+    // Ensure selectedDialog is in the filteredDialogs
+    if (selectedDialog && !filteredDialogs.some(dialog => dialog.dialogKey === selectedDialog)) {
+      setSelectedDialog('');
+      setSearchInput('');
+      setCurrentKeywords([]);
+      setCurrentStatuses({});
+    }
+  }, [filteredDialogs, selectedDialog]);
 
   useEffect(() => {
     // Update transformedUtterances when selectedDialog changes
-    const filteredUtterances = utterances.filter(
-      (utterance) => utterance.dialogKey === selectedDialog
-    );
-    setTransformedUtterances(
-      filteredUtterances.map((utterance) => ({
-        ...utterance,
-        status: currentStatuses[utterance.utterance] || '', // Load status from currentStatuses
-      }))
-    );
+    if (selectedDialog) {
+      const filteredUtterances = utterances.filter(
+        (utterance) => utterance.dialogKey === selectedDialog
+      );
+      setTransformedUtterances(
+        filteredUtterances.map((utterance) => ({
+          ...utterance,
+          status: currentStatuses[utterance.utterance] || '', // Load status from currentStatuses
+        }))
+      );
+    } else {
+      setTransformedUtterances([]);
+    }
   }, [selectedDialog, utterances, currentStatuses]);
 
   const handleDialogSelect = (dialogKey: string) => {
     setSelectedDialog(dialogKey); // Update selected dialog state
-    setSearchInput(dialogKey); // Update input field to show the selected option
+    setSearchInput(''); // Clear search input to display placeholder
     setShowDropdown(false); // Hide dropdown after selection
 
     // Load keywords and statuses for the selected dialog
     const dialogData = keywordsByDialog[dialogKey] || { keywords: [], statuses: {} };
     setCurrentKeywords(dialogData.keywords);
     setCurrentStatuses(dialogData.statuses);
+  };
+
+  const handleServiceSelect = (serviceName: string) => {
+    setSelectedService(serviceName); // Update selected service
+    setSearchInput(''); // Clear search input when service changes
   };
 
   const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -82,26 +137,22 @@ export const UtteranceAnalyzer: React.FC<DialogAnalyzerProps> = ({ utterances, d
   }, []);
 
   const handlePreviousClick = () => {
-    const currentIndex = dialogs.findIndex(dialog => dialog.dialogKey === selectedDialog);
+    if (!selectedDialog) return; // Do nothing if no dialog is selected
+
+    const currentIndex = filteredDialogs.findIndex(dialog => dialog.dialogKey === selectedDialog);
     if (currentIndex > 0) {
-      const previousDialog = dialogs[currentIndex - 1].dialogKey;
-      setSelectedDialog(previousDialog);
-      setSearchInput(previousDialog); // Update input to reflect previous dialog
-      const dialogData = keywordsByDialog[previousDialog] || { keywords: [], statuses: {} };
-      setCurrentKeywords(dialogData.keywords);
-      setCurrentStatuses(dialogData.statuses);
+      const previousDialog = filteredDialogs[currentIndex - 1].dialogKey;
+      handleDialogSelect(previousDialog);
     }
   };
 
   const handleNextClick = () => {
-    const currentIndex = dialogs.findIndex(dialog => dialog.dialogKey === selectedDialog);
-    if (currentIndex < dialogs.length - 1) {
-      const nextDialog = dialogs[currentIndex + 1].dialogKey;
-      setSelectedDialog(nextDialog);
-      setSearchInput(nextDialog); // Update input to reflect next dialog
-      const dialogData = keywordsByDialog[nextDialog] || { keywords: [], statuses: {} };
-      setCurrentKeywords(dialogData.keywords);
-      setCurrentStatuses(dialogData.statuses);
+    if (!selectedDialog) return; // Do nothing if no dialog is selected
+
+    const currentIndex = filteredDialogs.findIndex(dialog => dialog.dialogKey === selectedDialog);
+    if (currentIndex < filteredDialogs.length - 1) {
+      const nextDialog = filteredDialogs[currentIndex + 1].dialogKey;
+      handleDialogSelect(nextDialog);
     }
   };
 
@@ -146,13 +197,19 @@ export const UtteranceAnalyzer: React.FC<DialogAnalyzerProps> = ({ utterances, d
   };
 
   const handleAnalyze = () => {
-    // Call getNonSelectedDialogsStatus to get percentages for non-selected dialogs
+    if (!selectedDialog) {
+      alert('Please select a dialog to analyze.');
+      return;
+    }
+
+    // Call getNonSelectedDialogsStatus with filteredDialogs to limit analysis
     const results = getNonSelectedDialogsStatus(
       utterances,          // The utterances array
-      dialogs,             // The dialogs array
+      filteredDialogs,     // **Use filteredDialogs instead of dialogs**
       selectedDialog,      // The current selected dialog key
       currentKeywords      // The current keywords to match against
     );
+
     // Set modal data to the current selected dialog and keywords
     setModalData({
       dialogName: selectedDialog,
@@ -194,13 +251,6 @@ export const UtteranceAnalyzer: React.FC<DialogAnalyzerProps> = ({ utterances, d
     );
   };
 
-  // Filter dialogs based on search input or show all if search input is empty
-  const filteredDialogs = searchInput === ''
-    ? dialogs // Show all dialogs if input is empty
-    : dialogs.filter(dialog =>
-      dialog.dialogKey.toLowerCase().includes(searchInput.toLowerCase())
-    );
-
   // Define the field configuration for JsonDisplay
   const fieldConfig: { fieldName: string; label: string; type: 'string' | 'boolean' }[] = [
     { fieldName: 'utterance', label: 'Utterance', type: 'string' }, // This field will display the utterance text
@@ -209,13 +259,15 @@ export const UtteranceAnalyzer: React.FC<DialogAnalyzerProps> = ({ utterances, d
 
   const handleAddToDo = (
     index: number,
-    action: 'remove' | 'edit' | 'move',
+    action: 'remove' | 'edit' | 'move' | 'flag',
     dialogKey: string,
     newDialogKey?: string,
-    editedText?: string
+    editedText?: string,
+    flaggedFrom?: string // Added optional parameter
   ) => {
-    // Find utterance based on the provided dialogKey
-    const utterancesForDialog = utterances.filter(utterance => utterance.dialogKey === dialogKey);
+    const utterancesForDialog = utterances.filter(
+      (utterance) => utterance.dialogKey === dialogKey
+    );
     const utteranceToAdd = utterancesForDialog[index]; // Get the utterance from the selected dialog
 
     if (!utteranceToAdd || !utteranceToAdd.utterance) {
@@ -223,24 +275,62 @@ export const UtteranceAnalyzer: React.FC<DialogAnalyzerProps> = ({ utterances, d
       return;
     }
 
+    // Use flaggedFrom if provided, else use dialogKey
+    const flagSource = flaggedFrom || dialogKey;
+
     setToDoList((prevToDoList: any) => {
       const existingItem = prevToDoList[utteranceToAdd.utterance];
 
-      if (existingItem && existingItem.action === action) {
-        const { [utteranceToAdd.utterance]: _, ...remainingItems } = prevToDoList;
-        return remainingItems; // Remove the item if it exists and has the same action
-      }
+      if (action === 'flag') {
+        const flaggedFromArray = existingItem?.flaggedFrom || [];
+        const isAlreadyFlagged = flaggedFromArray.includes(flagSource);
 
-      // Otherwise, add/update the item in the to-do list
-      return {
-        ...prevToDoList,
-        [utteranceToAdd.utterance]: {
-          utterance: utteranceToAdd.utterance,
-          action: action,
-          newDialogKey: newDialogKey || null,
-          editedText: editedText || null,
-        },
-      };
+        let updatedFlaggedFrom;
+
+        if (isAlreadyFlagged) {
+          // Toggle off the flag (remove the flagSource from flaggedFrom)
+          updatedFlaggedFrom = flaggedFromArray.filter(
+            (key: any) => key !== flagSource
+          );
+        } else {
+          // Toggle on the flag (add the flagSource to flaggedFrom)
+          updatedFlaggedFrom = [...flaggedFromArray, flagSource];
+        }
+
+        // If no flags remain, remove the item from the toDoList
+        if (updatedFlaggedFrom.length === 0) {
+          const { [utteranceToAdd.utterance]: _, ...remainingItems } = prevToDoList;
+          return remainingItems;
+        } else {
+          return {
+            ...prevToDoList,
+            [utteranceToAdd.utterance]: {
+              ...existingItem,
+              utterance: utteranceToAdd.utterance, // Ensure this is the utterance text
+              action: 'flag', // Keep action as 'flag'
+              flaggedFrom: updatedFlaggedFrom, // Update the flaggedFrom array
+            },
+          };
+        }
+      } else {
+        // Handle other actions (remove, edit, move)
+        if (existingItem && existingItem.action === action) {
+          const { [utteranceToAdd.utterance]: _, ...remainingItems } = prevToDoList;
+          return remainingItems; // Remove the item if it exists and has the same action
+        }
+
+        return {
+          ...prevToDoList,
+          [utteranceToAdd.utterance]: {
+            ...existingItem,
+            utterance: utteranceToAdd.utterance, // Ensure this is the utterance text
+            action: action,
+            newDialogKey: newDialogKey || null,
+            editedText: editedText || null,
+            flaggedFrom: existingItem?.flaggedFrom || [],
+          },
+        };
+      }
     });
   };
 
@@ -262,53 +352,90 @@ export const UtteranceAnalyzer: React.FC<DialogAnalyzerProps> = ({ utterances, d
     }
   };
 
+  const handleFlagItem = (
+    index: number,
+    dialogKey: string,
+    flaggedFrom?: string // Added optional parameter
+  ) => {
+    handleAddToDo(index, 'flag', dialogKey, undefined, undefined, flaggedFrom);
+  };
+
   return (
     <>
       <div className="field-container">
-        <div className="object-details">
-          <button
-            className="nav-button"
-            onClick={handlePreviousClick}
-            disabled={dialogs.findIndex(dialog => dialog.dialogKey === selectedDialog) <= 0}
+        {/* Service Dropdown */}
+        <div className="dropdown-container">
+          <select
+            id="service-select"
+            value={selectedService}
+            onChange={(e) => handleServiceSelect(e.target.value)}
+            aria-label="Select Service"
           >
-            &lt;
-          </button>
+            <option value="">Select the Domain</option>
+            {services.map((service, index) => (
+              <option key={index} value={service.name}>
+                {service.name}
+              </option>
+            ))}
+          </select>
+        </div>
 
-          {/* Container for input and dropdown to control their layout */}
-          <div className="dropdown-container" ref={dropdownRef}>
-            {/* Input for searching dialogs */}
-            <input
-              type="text"
-              placeholder="Search dialog..."
-              value={searchInput} // Controlled input displays selected option
-              onChange={handleSearchInputChange}
-              onFocus={handleInputFocus}
-            />
+        {/* Navigation Buttons */}
+        <button
+          className="nav-button"
+          onClick={handlePreviousClick}
+          disabled={
+            !selectedDialog ||
+            filteredDialogs.findIndex(dialog => dialog.dialogKey === selectedDialog) <= 0
+          }
+          aria-label="Previous Dialog"
+        >
+          &lt;
+        </button>
 
-            {/* Dropdown with filtered options */}
-            {showDropdown && (
-              <ul className="dropdown">
-                {filteredDialogs.map((dialog, index) => (
+        {/* Dialog Search Input and Dropdown */}
+        <div className="dropdown-container" ref={dropdownRef}>
+          {/* Input for searching dialogs */}
+          <input
+            type="text"
+            placeholder={selectedDialog ? selectedDialog : "Search dialog..."}
+            value={searchInput}
+            onChange={handleSearchInputChange}
+            onFocus={handleInputFocus}
+            aria-label="Search Dialogs"
+          />
+
+          {/* Dropdown with filtered options */}
+          {showDropdown && (
+            <ul className="dropdown">
+              {filteredDialogs.length > 0 ? (
+                filteredDialogs.map((dialog, index) => (
                   <li
                     key={index}
                     onClick={() => handleDialogSelect(dialog.dialogKey)}
-                    className="dropdown-item"
+                    className={`dropdown-item ${dialog.dialogKey === selectedDialog ? 'selected' : ''}`}
                   >
                     {dialog.dialogKey}
                   </li>
-                ))}
-              </ul>
-            )}
-          </div>
-
-          <button
-            className="nav-button"
-            onClick={handleNextClick}
-            disabled={dialogs.findIndex(dialog => dialog.dialogKey === selectedDialog) >= dialogs.length - 1}
-          >
-            &gt;
-          </button>
+                ))
+              ) : (
+                <li className="dropdown-item">No dialogs found</li>
+              )}
+            </ul>
+          )}
         </div>
+
+        <button
+          className="nav-button"
+          onClick={handleNextClick}
+          disabled={
+            !selectedDialog ||
+            filteredDialogs.findIndex(dialog => dialog.dialogKey === selectedDialog) >= filteredDialogs.length - 1
+          }
+          aria-label="Next Dialog"
+        >
+          &gt;
+        </button>
 
         <div className="keyword-container">
           <input
@@ -317,9 +444,24 @@ export const UtteranceAnalyzer: React.FC<DialogAnalyzerProps> = ({ utterances, d
             onChange={handleInputChange}
             onKeyPress={handleKeyPress} // Add key press event to handle Enter key
             placeholder="Keyword to add (no spaces)"
+            aria-label="Add Keyword"
           />
-          <button className="light-button" onClick={handleAddKeyWord}>Add Key Word</button>
-          <button className="primary-button" onClick={() => handleAnalyze()}>Analyze</button>
+          <button
+            className="light-button"
+            onClick={handleAddKeyWord}
+            disabled={!selectedDialog}
+            aria-label="Add Keyword Button"
+          >
+            Add Key Word
+          </button>
+          <button
+            className="primary-button"
+            onClick={handleAnalyze}
+            disabled={!selectedDialog}
+            aria-label="Analyze Button"
+          >
+            Analyze
+          </button>
         </div>
       </div>
 
@@ -333,13 +475,19 @@ export const UtteranceAnalyzer: React.FC<DialogAnalyzerProps> = ({ utterances, d
         toDoList={toDoList}
         onDeleteItem={handleDeleteItem}
         onEditItem={handleEditItem}
-        onMoveItem={handleMoveItem} />
+        onMoveItem={handleMoveItem}
+        onFlagItem={handleFlagItem}
+      />
 
       <div className="tag-bar">
         {currentKeywords.map((keyword, index) => (
           <span key={index} className="tag-pill">
             {keyword}
-            <button onClick={() => handleRemoveKeyword(keyword)}></button> {/* X button to remove keyword */}
+            <button
+              onClick={() => handleRemoveKeyword(keyword)}
+              aria-label={`Remove keyword ${keyword}`}
+            >
+            </button> {/* X button to remove keyword */}
           </span>
         ))}
       </div>
@@ -353,6 +501,8 @@ export const UtteranceAnalyzer: React.FC<DialogAnalyzerProps> = ({ utterances, d
         onDeleteItem={(index) => handleDeleteItem(index, selectedDialog)}
         onEditItem={(index) => handleEditItem(index, selectedDialog)}
         onMoveItem={(index) => handleMoveItem(index, selectedDialog)}
+        onFlagItem={(index) => handleFlagItem(index, selectedDialog)}
+        dialogKey={selectedDialog}
       />
     </>
   );
