@@ -143,8 +143,8 @@ const Home: NextPage = () => {
       fileReader.onload = (e) => {
         const content = e.target?.result;
 
-        if (file.name.endsWith('.cbot')) {
-          // Handle .cbot file
+        if (file.name.endsWith('.cbot') || file.type === 'application/json') {
+          // Handle .cbot or JSON file
           try {
             const data = content ? JSON.parse(content.toString()) : null;
             if (data && typeof data === 'object') {
@@ -209,9 +209,70 @@ const Home: NextPage = () => {
             );
           }
         }
+        else if (
+          file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
+          file.type === 'application/vnd.ms-excel'
+        ) {
+          // Handle XLSX file
+          try {
+            const data = new Uint8Array(e.target?.result as ArrayBuffer);
+            const workbook = XLSX.read(data, { type: 'array' });
+
+            const firstSheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[firstSheetName];
+
+            const jsonData = XLSX.utils.sheet_to_json(worksheet);
+
+            // Store the original data for later use
+            setOriginalXlsxData(jsonData);
+
+            const utterances: any[] = [];
+            const dialogs: any[] = [];
+            const services: any[] = [];
+
+            jsonData.forEach((row: any) => {
+              // Extract data from columns and fill respective arrays
+              if (row.Utterance) {
+                utterances.push({
+                  utterance: row.Utterance,
+                  dialogKey: row.MlIntentName || ''
+                });
+              }
+
+              if (row.MlIntentName && !dialogs.some(dialog => dialog.dialogKey === row.MlIntentName)) {
+                dialogs.push({
+                  dialogKey: row.MlIntentName,
+                  description: '', // Placeholder for description
+                  serviceKey: row.MlDomainName || ''
+                });
+              }
+
+              if (row.MlDomainName && !services.some(service => service.name === row.MlDomainName)) {
+                services.push({
+                  name: row.MlDomainName,
+                  description: '', // Placeholder for description
+                  isTransactional: false,
+                  isAnalysisNeeded: false,
+                  isInformational: false,
+                  isAuthRequired: false,
+                  isAPICallNeeded: false,
+                  altService: ''
+                });
+              }
+            });
+
+            // Update state with parsed data
+            setUtteranceJsonArray(utterances);
+            setDialogJsonArray(dialogs);
+            setServiceJsonArray(services);
+          } catch (error) {
+            console.error('Error parsing XLSX file:', error);
+            alert('Failed to parse the XLSX file. Please ensure it is correctly formatted.');
+          }
+        }
         else {
           // Unrecognized file type
-          alert('Unsupported file type.');
+          alert('Unsupported file type. Please upload a .cbot or .xlsx file.');
         }
       };
 
@@ -229,7 +290,7 @@ const Home: NextPage = () => {
       ) {
         fileReader.readAsArrayBuffer(file);
       } else {
-        alert('Unsupported file type.');
+        alert('Unsupported file type. Please upload a .cbot or .xlsx file.');
       }
     }
   };
@@ -305,7 +366,7 @@ const Home: NextPage = () => {
         case 'dialogs':
           setJsonArray(dialogJsonArray);
           break;
-        case 'Services':
+        case 'services':
           setJsonArray(serviceJsonArray);
           break;
         default:
@@ -367,6 +428,7 @@ const Home: NextPage = () => {
         <UtteranceAnalyzer
           utterances={utteranceJsonArray}
           dialogs={dialogJsonArray}
+          services={serviceJsonArray}
           toDoList={toDoList}
           setToDoList={setToDoList}
           keywordsByDialog={keywordsByDialog}
