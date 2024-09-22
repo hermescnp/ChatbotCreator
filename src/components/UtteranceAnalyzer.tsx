@@ -48,9 +48,11 @@ export const UtteranceAnalyzer: React.FC<UtteranceAnalyzerProps> = ({
       filtered = dialogs.filter(dialog => dialog.serviceKey === selectedService);
     }
 
-    if (searchInput !== '') {
+    if (searchInput.trim() !== '') { // Trim the search input
+      const normalizedSearch = searchInput.trim().toLowerCase();
+      // Ensure 'dialogKey' is the correct field for searching
       filtered = filtered.filter(dialog =>
-        dialog.dialogKey.toLowerCase().includes(searchInput.toLowerCase())
+        dialog.dialogKey.toLowerCase().includes(normalizedSearch)
       );
     }
 
@@ -66,20 +68,23 @@ export const UtteranceAnalyzer: React.FC<UtteranceAnalyzerProps> = ({
 
   // Automatically select the first dialog if available and no dialog is selected
   useEffect(() => {
-    if (filteredDialogs.length > 0 && selectedDialog === '') {
+    if (searchInput.trim() === '' && filteredDialogs.length > 0 && selectedDialog === '') {
       handleDialogSelect(filteredDialogs[0].dialogKey);
     }
-  }, [filteredDialogs, selectedDialog]);
+  }, [filteredDialogs, selectedDialog, searchInput]);
 
+  // Removed the useEffect that clears selectedDialog when it's not in filteredDialogs
+  /*
   useEffect(() => {
     // Ensure selectedDialog is in the filteredDialogs
     if (selectedDialog && !filteredDialogs.some(dialog => dialog.dialogKey === selectedDialog)) {
       setSelectedDialog('');
-      setSearchInput('');
+      // setSearchInput(''); // Removed to prevent clearing search input during typing
       setCurrentKeywords([]);
       setCurrentStatuses({});
     }
   }, [filteredDialogs, selectedDialog]);
+  */
 
   useEffect(() => {
     // Update transformedUtterances when selectedDialog changes
@@ -112,6 +117,7 @@ export const UtteranceAnalyzer: React.FC<UtteranceAnalyzerProps> = ({
   const handleServiceSelect = (serviceName: string) => {
     setSelectedService(serviceName); // Update selected service
     setSearchInput(''); // Clear search input when service changes
+    setShowDropdown(false); // Hide dropdown if visible
   };
 
   const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
